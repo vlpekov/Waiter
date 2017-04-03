@@ -141,7 +141,7 @@ public class Interface {
 		frame.getContentPane().add(customerTable1Ch2);
 		
 		JLabel customerTable1Ch3 = new JLabel("");
-		customerTable1Ch3.setBounds(185, 105, 56, 61);
+		customerTable1Ch3.setBounds(193, 105, 56, 61);
 		customerTable1Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente4.png")));
 		customerSet(customerTable1Ch3, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable1Ch3);
@@ -177,7 +177,7 @@ public class Interface {
 		frame.getContentPane().add(customerTable2Ch2);
 		
 		JLabel customerTable2Ch3 = new JLabel("");
-		customerTable2Ch3.setBounds(350, 45, 61, 61);
+		customerTable2Ch3.setBounds(352, 44, 61, 61);
 		customerTable2Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/clientn8.png")));
 		customerSet(customerTable2Ch3, popupMenuCustomer, topChair);
 		frame.getContentPane().add(customerTable2Ch3);
@@ -195,8 +195,8 @@ public class Interface {
 		frame.getContentPane().add(customerTable3Ch1);
 		
 		JLabel customerTable3Ch2 = new JLabel("");
-		customerTable3Ch2.setBounds(510, 105, 61, 61);
-		customerTable3Ch2.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw4.png")));
+		customerTable3Ch2.setBounds(652, 105, 61, 61);
+		customerTable3Ch2.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente4.png")));
 		customerSet(customerTable3Ch2, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable3Ch2);
 		
@@ -207,8 +207,8 @@ public class Interface {
 		frame.getContentPane().add(customerTable3Ch3);
 		
 		JLabel customerTable3Ch4 = new JLabel("");
-		customerTable3Ch4.setBounds(640, 105, 61, 61);
-		customerTable3Ch4.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente6.png")));
+		customerTable3Ch4.setBounds(502, 105, 61, 61);
+		customerTable3Ch4.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw6.png")));
 		customerSet(customerTable3Ch4, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable3Ch4);
 		
@@ -245,7 +245,7 @@ public class Interface {
 		JLabel customerTable4Ch6 = new JLabel("");
 		customerTable4Ch6.setBounds(753, 105, 61, 61);
 		customerTable4Ch6.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw3.png")));
-		customerSet(customerTable4Ch6, popupMenuCustomer, topChair);
+		customerSet(customerTable4Ch6, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable4Ch6);
 		
 		JLabel customerTable5Ch1 = new JLabel("");
@@ -263,175 +263,206 @@ public class Interface {
 		JLabel customerTable5Ch3 = new JLabel("");
 		customerTable5Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente6.png")));
 		customerTable5Ch3.setBounds(159, 453, 61, 61);
+		customerSet(customerTable5Ch3, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable5Ch3);
 		
 		JLabel customerTable5Ch4 = new JLabel("");
 		customerTable5Ch4.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente3.png")));
 		customerTable5Ch4.setBounds(163, 400, 61, 61);
+		customerSet(customerTable5Ch4, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable5Ch4);
 		
 		JLabel customerTable5Ch5 = new JLabel("");
 		customerTable5Ch5.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente9.png")));
 		customerTable5Ch5.setBounds(164, 346, 61, 61);
+		customerSet(customerTable5Ch5, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable5Ch5);
 		
-
-		
-				JLabel customerTable5Ch6 = new JLabel("");
-				customerTable5Ch6.setBounds(95, 312, 61, 61);
-						customerSet(customerTable5Ch6, popupMenuCustomer, topChair);
-						frame.getContentPane().add(customerTable5Ch6);
-//						chairSet(chair5T5, customerTable5Ch6, 5);
-//						chairSet(chair6T5, customerTable5Ch6, 5);
+		JLabel customerTable5Ch6 = new JLabel("");
+		customerTable5Ch6.setBounds(95, 312, 61, 61);
+		customerSet(customerTable5Ch6, popupMenuCustomer, topChair);
+		frame.getContentPane().add(customerTable5Ch6);
+		// chairSet(chair5T5, customerTable5Ch6, 5);
+		// chairSet(chair6T5, customerTable5Ch6, 5);
 		
 		JLabel customerTable5Ch7 = new JLabel("");
 		customerTable5Ch7.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw4.png")));
 		customerTable5Ch7.setBounds(21, 347, 61, 61);
+		customerSet(customerTable5Ch7, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable5Ch7);
 		
 		JLabel customerTable5Ch8 = new JLabel("");
 		customerTable5Ch8.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw3.png")));
 		customerTable5Ch8.setBounds(22, 398, 61, 61);
+		customerSet(customerTable5Ch8, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable5Ch8);
 		
 		JLabel customerTable5Ch9 = new JLabel("");
 		customerTable5Ch9.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw7.png")));
 		customerTable5Ch9.setBounds(19, 452, 61, 61);
+		customerSet(customerTable5Ch9, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable5Ch9);
 		
 		JLabel customerTable5Ch10 = new JLabel("");
 		customerTable5Ch10.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw6.png")));
 		customerTable5Ch10.setBounds(23, 501, 61, 61);
+		customerSet(customerTable5Ch10, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable5Ch10);
 		
 		JLabel customerTable6Ch1 = new JLabel("");
 		customerTable6Ch1.setIcon(new ImageIcon(Interface.class.getResource("/images/clients5.png")));
 		customerTable6Ch1.setBounds(354, 537, 61, 61);
+		customerSet(customerTable6Ch1, popupMenuCustomer, bottomChair);
 		frame.getContentPane().add(customerTable6Ch1);
 		
 		JLabel customerTable6Ch2 = new JLabel("");
 		customerTable6Ch2.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente6.png")));
 		customerTable6Ch2.setBounds(426, 509, 61, 61);
+		customerSet(customerTable6Ch2, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable6Ch2);
 		
 		JLabel customerTable6Ch3 = new JLabel("");
 		customerTable6Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente7.png")));
 		customerTable6Ch3.setBounds(428, 453, 61, 61);
+		customerSet(customerTable6Ch3, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable6Ch3);
 		
 		JLabel customerTable6Ch4 = new JLabel("");
 		customerTable6Ch4.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente10.png")));
 		customerTable6Ch4.setBounds(427, 398, 61, 61);
+		customerSet(customerTable6Ch4, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable6Ch4);
 		
 		JLabel customerTable6Ch5 = new JLabel("");
 		customerTable6Ch5.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente1.png")));
 		customerTable6Ch5.setBounds(426, 349, 61, 61);
+		customerSet(customerTable6Ch5, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable6Ch5);
 		
 		JLabel customerTable6Ch6 = new JLabel("");
 		customerTable6Ch6.setIcon(new ImageIcon(Interface.class.getResource("/images/clientn3.png")));
 		customerTable6Ch6.setBounds(357, 309, 61, 61);
+		customerSet(customerTable6Ch6, popupMenuCustomer, topChair);
 		frame.getContentPane().add(customerTable6Ch6);
 		
 		JLabel customerTable6Ch7 = new JLabel("");
 		customerTable6Ch7.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw6.png")));
 		customerTable6Ch7.setBounds(280, 346, 61, 61);
+		customerSet(customerTable6Ch7, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable6Ch7);
 		
 		JLabel customerTable6Ch8 = new JLabel("");
 		customerTable6Ch8.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw3.png")));
 		customerTable6Ch8.setBounds(282, 402, 61, 61);
+		customerSet(customerTable6Ch8, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable6Ch8);
 		
 		JLabel customerTable6Ch9 = new JLabel("");
 		customerTable6Ch9.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw5.png")));
 		customerTable6Ch9.setBounds(280, 453, 61, 61);
+		customerSet(customerTable6Ch9, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable6Ch9);
 		
 		JLabel customerTable6Ch10 = new JLabel("");
 		customerTable6Ch10.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw6.png")));
 		customerTable6Ch10.setBounds(282, 507, 61, 61);
+		customerSet(customerTable6Ch10, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable6Ch10);
 		
 		JLabel customerTable7Ch1 = new JLabel("");
 		customerTable7Ch1.setIcon(new ImageIcon(Interface.class.getResource("/images/clients6.png")));
 		customerTable7Ch1.setBounds(609, 535, 61, 61);
+		customerSet(customerTable7Ch1, popupMenuCustomer, bottomChair);
 		frame.getContentPane().add(customerTable7Ch1);
 		
 		JLabel customerTable7Ch2 = new JLabel("");
 		customerTable7Ch2.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente6.png")));
 		customerTable7Ch2.setBounds(678, 503, 61, 61);
+		customerSet(customerTable7Ch2, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable7Ch2);
 		
 		JLabel customerTable7Ch3 = new JLabel("");
 		customerTable7Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente4.png")));
 		customerTable7Ch3.setBounds(680, 452, 61, 61);
+		customerSet(customerTable7Ch3, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable7Ch3);
 		
 		JLabel customerTable7Ch4 = new JLabel("");
 		customerTable7Ch4.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente10.png")));
 		customerTable7Ch4.setBounds(680, 397, 61, 61);
+		customerSet(customerTable7Ch4, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable7Ch4);
 		
 		JLabel customerTable7Ch5 = new JLabel("");
 		customerTable7Ch5.setIcon(new ImageIcon(Interface.class.getResource("/images/cliente7.png")));
 		customerTable7Ch5.setBounds(681, 346, 61, 61);
+		customerSet(customerTable7Ch5, popupMenuCustomer, rightChair);
 		frame.getContentPane().add(customerTable7Ch5);
 		
 		JLabel customerTable7Ch6 = new JLabel("");
 		customerTable7Ch6.setIcon(new ImageIcon(Interface.class.getResource("/images/clientn1.png")));
 		customerTable7Ch6.setBounds(611, 307, 61, 61);
+		customerSet(customerTable7Ch6, popupMenuCustomer, topChair);
 		frame.getContentPane().add(customerTable7Ch6);
 		
 		JLabel customerTable7Ch7 = new JLabel("");
 		customerTable7Ch7.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw2.png")));
 		customerTable7Ch7.setBounds(540, 345, 61, 61);
+		customerSet(customerTable7Ch7, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable7Ch7);
 		
 		JLabel customerTable7Ch8 = new JLabel("");
 		customerTable7Ch8.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw8.png")));
 		customerTable7Ch8.setBounds(541, 400, 61, 61);
+		customerSet(customerTable7Ch8, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable7Ch8);
 		
 		JLabel customerTable7Ch9 = new JLabel("");
 		customerTable7Ch9.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw5.png")));
 		customerTable7Ch9.setBounds(539, 450, 61, 61);
+		customerSet(customerTable7Ch9, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable7Ch9);
 		
 		JLabel customerTable7Ch10 = new JLabel("");
 		customerTable7Ch10.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw9.png")));
 		customerTable7Ch10.setBounds(538, 508, 61, 61);
+		customerSet(customerTable7Ch10, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable7Ch10);
 		
 		JLabel customerTable8Ch1 = new JLabel("");
 		customerTable8Ch1.setIcon(new ImageIcon(Interface.class.getResource("/images/clients8.png")));
-		customerTable8Ch1.setBounds(899, 373, 61, 61);
+		customerTable8Ch1.setBounds(898, 368, 61, 61);
+		customerSet(customerTable8Ch1, popupMenuCustomer, bottomChair);
 		frame.getContentPane().add(customerTable8Ch1);
 		
 		JLabel customerTable8Ch2 = new JLabel("");
 		customerTable8Ch2.setIcon(new ImageIcon(Interface.class.getResource("/images/clientn6.png")));
 		customerTable8Ch2.setBounds(908, 251, 61, 61);
+		customerSet(customerTable8Ch2, popupMenuCustomer, topChair);
 		frame.getContentPane().add(customerTable8Ch2);
 		
 		JLabel customerTable8Ch3 = new JLabel("");
 		customerTable8Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw4.png")));
-		customerTable8Ch3.setBounds(823, 310, 61, 61);
+		customerTable8Ch3.setBounds(827, 311, 61, 61);
+		customerSet(customerTable8Ch3, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable8Ch3);
 		
 		JLabel customerTable9Ch1 = new JLabel("");
 		customerTable9Ch1.setIcon(new ImageIcon(Interface.class.getResource("/images/clients1.png")));
 		customerTable9Ch1.setBounds(901, 554, 61, 61);
+		customerSet(customerTable9Ch1, popupMenuCustomer, bottomChair);
 		frame.getContentPane().add(customerTable9Ch1);
 		
 		JLabel customerTable9Ch2 = new JLabel("");
 		customerTable9Ch2.setIcon(new ImageIcon(Interface.class.getResource("/images/clientn10.png")));
 		customerTable9Ch2.setBounds(906, 441, 61, 61);
+		customerSet(customerTable9Ch2, popupMenuCustomer, topChair);
 		frame.getContentPane().add(customerTable9Ch2);
 		
 		JLabel customerTable9Ch3 = new JLabel("");
 		customerTable9Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw3.png")));
 		customerTable9Ch3.setBounds(826, 495, 61, 61);
+		customerSet(customerTable9Ch3, popupMenuCustomer, leftChair);
 		frame.getContentPane().add(customerTable9Ch3);
 
 
