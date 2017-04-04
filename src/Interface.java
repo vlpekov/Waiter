@@ -83,6 +83,18 @@ public class Interface {
 		frameMenu.setBounds(300, 300, 650, 300);
 		frameMenu.setVisible(false);
 
+		// customers lists
+		Map<Integer, JLabel> customersTable1 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable2 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable3 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable4 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable5 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable6 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable7 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable8 = new HashMap<Integer, JLabel>(15);
+		Map<Integer, JLabel> customersTable9 = new HashMap<Integer, JLabel>(15);
+		Map<Table, Map<Integer, JLabel>> allTablesCustomers = new HashMap<Table, Map<Integer, JLabel>>(15);
+		
 		// menu bar
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
@@ -100,9 +112,9 @@ public class Interface {
 		mntmRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				currentCustomer.setVisible(false);
-				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
-				
+//				currentCustomer.setVisible(false);
+//				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
+				removeCurrentCustomer(currentCustomer, currentTable, allTablesCustomers);
 			}
 		});
 		JMenuItem mntmChangeIcon = new JMenuItem("Change Icon");
@@ -117,17 +129,7 @@ public class Interface {
 		
 
 		frame.getContentPane().setLayout(null);
-		// customers
-		Map<Integer, JLabel> customersTable1 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable2 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable3 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable4 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable5 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable6 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable7 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable8 = new HashMap<Integer, JLabel>(15);
-		Map<Integer, JLabel> customersTable9 = new HashMap<Integer, JLabel>(15);
-		Map<Table, Map<Integer, JLabel>> allTablesCustomers = new HashMap<Table, Map<Integer, JLabel>>(15);
+
 		
 		
 		JLabel customerTable1Ch1 = new JLabel("");
@@ -1255,6 +1257,22 @@ public class Interface {
 		}
 	}
 	
+	public void removeCurrentCustomer(JLabel currentCustomer, Table currentTable, Map<Table, Map<Integer, JLabel>> allTablesCustomers) {
+		Map<Integer, JLabel> curentTableCustomers = allTablesCustomers.get(currentTable);
+		currentCustomer.setVisible(false);
+		currentTable.getCustomer(currentCustomer).deactivateCustomer();
+		boolean isTableEmpty = true;
+		for (JLabel customer : curentTableCustomers.values()) {
+			if (currentTable.getCustomer(customer).isActive()) {
+				isTableEmpty = false;
+				break;
+			}
+		}
+		if (isTableEmpty) {
+			currentTable.release();
+			getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
+		}
+	}
 	
 	public String getCustomerOrientation (JLabel currentCustomer) {
 		String customerInfo = currentCustomer.toString();
