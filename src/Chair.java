@@ -2,6 +2,7 @@
 public class Chair {
 private int chairNumber;
 private boolean isFree;
+
 //private Customer customer;
 
 public Chair() {
