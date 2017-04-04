@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
@@ -139,7 +140,7 @@ public class Interface {
 		Map<Integer, JLabel> customersTable7 = new HashMap<Integer, JLabel>(15);
 		Map<Integer, JLabel> customersTable8 = new HashMap<Integer, JLabel>(15);
 		Map<Integer, JLabel> customersTable9 = new HashMap<Integer, JLabel>(15);
-		Map<JLabel, Map<Integer, JLabel>> allTablesCustomers = new HashMap<JLabel, Map<Integer, JLabel>>(15);
+		Map<Table, Map<Integer, JLabel>> allTablesCustomers = new HashMap<Table, Map<Integer, JLabel>>(15);
 		
 		
 		JLabel customerTable1Ch1 = new JLabel("");
@@ -519,12 +520,7 @@ public class Interface {
 
 		setReservedSigns();
 
-		// set tables
-		// JLabel table2 = new JLabel("table 2");
-		//
-		// table2.setVerticalAlignment(SwingConstants.TOP);
-		// table2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		// table2.setBounds(314, 87, 128, 91);
+		// tables menu
 		JPopupMenu popupMenuTable = new JPopupMenu();
 		JMenuItem mntmClearTable = new JMenuItem("Clear table");
 		popupMenuTable.add(mntmClearTable);
@@ -532,10 +528,11 @@ public class Interface {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				removeCustomers(currentTable, allTablesCustomers);
 				currentTable.release();
 				currentReservedSign.setVisible(false);
 				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
-				customerTable2Ch3.setVisible(false);
+				
 				System.out.println("Clear table");
 			}
 		});
@@ -558,7 +555,7 @@ public class Interface {
 		// table 1
 		JLabel table1 = new JLabel("");
 		table1.setBounds(72, 82, 127, 95);
-		tableSet(table1, 1, popupMenuTable);
+		tableSet(table1, 1, popupMenuTable, allTablesCustomers, customersTable1);
 		table1.setIcon(new ImageIcon(Interface.class.getResource("/images/table8a.png")));
 		frame.getContentPane().add(table1);
 		
@@ -566,7 +563,7 @@ public class Interface {
 		// table 2
 		JLabel table2 = new JLabel("");
 		table2.setBounds(335, 91, 91, 91);
-		tableSet(table2, 2, popupMenuTable);
+		tableSet(table2, 2, popupMenuTable, allTablesCustomers, customersTable2);
 		table2.setIcon(new ImageIcon(Interface.class.getResource("/images/table4a.png")));
 		frame.getContentPane().add(table2);
 		
@@ -574,7 +571,7 @@ public class Interface {
 		// table 3
 		JLabel table3 = new JLabel("");
 		table3.setBounds(558, 91, 91, 91);
-		tableSet(table3, 3, popupMenuTable);
+		tableSet(table3, 3, popupMenuTable, allTablesCustomers, customersTable3);
 		table3.setIcon(new ImageIcon(Interface.class.getResource("/images/table4b.png")));
 		frame.getContentPane().add(table3);
 		
@@ -582,7 +579,7 @@ public class Interface {
 		// table 4
 		JLabel table4 = new JLabel("");
 		table4.setBounds(795, 82, 127, 95);
-		tableSet(table4, 4, popupMenuTable);
+		tableSet(table4, 4, popupMenuTable, allTablesCustomers, customersTable4);
 		table4.setIcon(new ImageIcon(Interface.class.getResource("/images/table8b.png")));
 		frame.getContentPane().add(table4);
 		
@@ -590,18 +587,8 @@ public class Interface {
 		// table 5
 		JLabel table5 = new JLabel("");
 		table5.setBounds(72, 357, 101, 194);
-
-		table5.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				selectTable(e, 5);
-			}
-		});
-		table5.setToolTipText("Table 5");
-		table5.setVerticalTextPosition(SwingConstants.CENTER);
-		table5.setHorizontalTextPosition(SwingConstants.CENTER);
+		tableSet(table5, 5, popupMenuTable, allTablesCustomers, customersTable5);
 		table5.setIcon(new ImageIcon(Interface.class.getResource("/images/table10a.png")));
-		table5.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(table5);
 		addPopup(table5, popupMenuTable);
 		
@@ -609,7 +596,7 @@ public class Interface {
 		// table 6
 		JLabel table6 = new JLabel("");
 		table6.setBounds(336, 357, 101, 194);
-		tableSet(table6, 6, popupMenuTable);
+		tableSet(table6, 6, popupMenuTable, allTablesCustomers, customersTable6);
 		table6.setIcon(new ImageIcon(Interface.class.getResource("/images/table10b.png")));
 		frame.getContentPane().add(table6);
 		
@@ -617,7 +604,7 @@ public class Interface {
 		// table 7
 		JLabel table7 = new JLabel("");
 		table7.setBounds(589, 357, 101, 194);
-		tableSet(table7, 7, popupMenuTable);
+		tableSet(table7, 7, popupMenuTable, allTablesCustomers, customersTable7);
 		table7.setIcon(new ImageIcon(Interface.class.getResource("/images/table10c.png")));
 		frame.getContentPane().add(table7);
 		
@@ -625,7 +612,7 @@ public class Interface {
 		// table 8
 		JLabel table8 = new JLabel("");
 		table8.setBounds(880, 303, 94, 71);
-		tableSet(table8, 8, popupMenuTable);
+		tableSet(table8, 8, popupMenuTable, allTablesCustomers, customersTable8);
 		table8.setIcon(new ImageIcon(Interface.class.getResource("/images/table3b.png")));
 		frame.getContentPane().add(table8);
 		
@@ -633,7 +620,7 @@ public class Interface {
 		// table 9
 		JLabel table9 = new JLabel("");
 		table9.setBounds(880, 491, 94, 71);
-		tableSet(table9, 9, popupMenuTable);
+		tableSet(table9, 9, popupMenuTable, allTablesCustomers, customersTable9);
 		table9.setIcon(new ImageIcon(Interface.class.getResource("/images/table3b.png")));
 		frame.getContentPane().add(table9);
 		
@@ -1254,8 +1241,9 @@ public class Interface {
 		});
 	}
 
-	public void tableSet(JLabel table, int tableNumber, JPopupMenu popupMenuTable) {
+	public void tableSet(JLabel table, int tableNumber, JPopupMenu popupMenuTable, Map<Table, Map<Integer, JLabel>> allTablesCustomers, Map<Integer, JLabel> customersTable) {
 		tableMouseEvent(table, tableNumber);
+		Table tableObject = Restaurant.getTable(tableNumber);
 		table.setToolTipText("Table " + tableNumber);
 		table.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		table.setVerticalTextPosition(SwingConstants.CENTER);
@@ -1263,6 +1251,7 @@ public class Interface {
 		table.setAlignmentX(Component.CENTER_ALIGNMENT);
 		frame.getContentPane().add(table);
 		addPopup(table, popupMenuTable);
+		allTablesCustomers.put(tableObject, customersTable);
 	}
 	public void selectTable(MouseEvent e, int tableNumber) {
 		setCurrentTable(tableNumber);
@@ -1302,9 +1291,13 @@ public class Interface {
 	currentCustomer.setIcon(new ImageIcon(Interface.class.getResource("/images/client" + getCustomerOrientation(currentCustomer) + getAnotherImageNumber(currentCustomer) + ".png")));
 	}
 	
-	public void removeCustomers (JLabel currentTable) {
-		
+	public void removeCustomers(Table currentTable, Map<Table, Map<Integer, JLabel>> allTablesCustomers) {
+		Map<Integer, JLabel> curentTableCustomers = allTablesCustomers.get(currentTable);
+		for (JLabel customer : curentTableCustomers.values()) {
+			customer.setVisible(false);
+		}
 	}
+	
 	
 	public String getCustomerOrientation (JLabel currentCustomer) {
 		String customerInfo = currentCustomer.toString();
