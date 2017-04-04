@@ -1,7 +1,4 @@
 import java.awt.EventQueue;
-import java.awt.Image;
-
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -12,22 +9,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
-
-import javax.swing.JTextPane;
-import javax.swing.SwingUtilities;
-
 import java.awt.Color;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import java.awt.Label;
-import javax.swing.JInternalFrame;
 import java.awt.Cursor;
-import java.awt.event.MouseMotionAdapter;
 
 public class Interface {
 
@@ -1284,6 +1273,7 @@ public class Interface {
 			}
 		});
 		customersTable.put(customerNumber, customer);
+		
 	}
 	
 	public void customerChangeIcon() {
