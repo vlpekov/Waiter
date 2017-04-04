@@ -34,6 +34,8 @@ public class TestVlad {
 		printHorizontalLine();
 		Restaurant.getTable(5).printCustomerList();
 		System.out.println(Restaurant.getTable(9).countFreeChairs());
+		
+	
 	}
 	public static void printHorizontalLine() {
 		System.out.println("-----------------------");
