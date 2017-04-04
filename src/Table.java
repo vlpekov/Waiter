@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.JLabel;
+
 public class Table {
 	private int tableNumber;
 	private int placesNumber;
@@ -146,6 +148,14 @@ public class Table {
 		}
 	}
 
+	public void printCustomerList() {
+		System.out.println("Customers:");
+		for (Customer customer : customers) {
+			customer.customerInfo();
+//			System.out.printf("Chair number: %d, Available: %b\n", chair.getChairNumber(), chair.isFree());
+		}
+	}
+	
 	public Chair getChair(int chairNumber) {
 		Chair getChair = null;
 		for (Chair chair : chairs) {
@@ -173,14 +183,24 @@ public class Table {
 	}
 
 
-	public Chair getCustomer(int chairNumber) {
-		Chair getChair = null;
-		for (Chair chair : chairs) {
-			if (chair.getChairNumber() == chairNumber) {
-				getChair = chair;
+	public Customer getCustomer(int customerNumber) {
+		Customer getCustomer = null;
+		for (Customer customer : customers) {
+			if (customer.getCustomerNumber() == customerNumber) {
+				getCustomer = customer;
 			}
 		}
-		return getChair;
+		return getCustomer;
+	}
+	
+	public Customer getCustomer(JLabel customerLabel) {
+		Customer getCustomer = null;
+		for (Customer customer : customers) {
+			if (customer.getCustomerLabel() == customerLabel) {
+				getCustomer = customer;
+			}
+		}
+		return getCustomer;
 	}
 
 	public void swapTables(Table baseTable, Table tableSuccessor) {

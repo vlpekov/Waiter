@@ -8,19 +8,19 @@ public class Customer {
 	private Table onTable;
 	private int tableNumber;
 
-	public Customer(int customerName, int tableNumber) {
-		this.customerNumber = customerName;
+	public Customer(int customerNumber, int tableNumber) {
+		this.customerNumber = customerNumber;
 		this.tableNumber = tableNumber;
 		this.onTable = Restaurant.getTable(tableNumber);
 		this.isActive = false;
 	}
 
-	public int getCustomerName() {
+	public int getCustomerNumber() {
 		return customerNumber;
 	}
 
-	public void setCustomerName(int customerName) {
-		this.customerNumber = customerName;
+	public void setCustomerNumber(int customerNumber) {
+		this.customerNumber = customerNumber;
 	}
 
 	public boolean isActive() {
@@ -29,6 +29,16 @@ public class Customer {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+
+	public void activateCustomer() {
+		System.out.println("Customer " + this.customerNumber + " is activ");
+		setActive(true);
+	}
+
+	public void deactivateCustomer() {
+		System.out.println("Customer " + this.customerNumber + " is NOT activ");
+		setActive(false);
 	}
 
 	public double getCustomerBill() {
@@ -63,4 +73,8 @@ public class Customer {
 		this.tableNumber = tableNumber;
 	}
 
+	public void customerInfo() {
+		System.out.printf("Customer number: %d, Table: %d Available: %b \n", getCustomerNumber(),
+				getTableNumber(), isActive());
+	}
 }
