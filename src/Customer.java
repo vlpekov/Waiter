@@ -1,24 +1,26 @@
 import javax.swing.JLabel;
 
 public class Customer {
-	private int customerName;
+	private int customerNumber;
 	private boolean isActive;
 	private double customerBill;
 	private JLabel customerLabel;
 	private Table onTable;
+	private int tableNumber;
 
 	public Customer(int customerName, int tableNumber) {
-		this.customerName = customerName;
+		this.customerNumber = customerName;
+		this.tableNumber = tableNumber;
 		this.onTable = Restaurant.getTable(tableNumber);
 		this.isActive = false;
 	}
 
 	public int getCustomerName() {
-		return customerName;
+		return customerNumber;
 	}
 
 	public void setCustomerName(int customerName) {
-		this.customerName = customerName;
+		this.customerNumber = customerName;
 	}
 
 	public boolean isActive() {
@@ -51,6 +53,14 @@ public class Customer {
 
 	public void setCustomerTable(Table onTable) {
 		this.onTable = onTable;
+	}
+
+	public int getTableNumber() {
+		return tableNumber;
+	}
+
+	public void setTableNumber(int tableNumber) {
+		this.tableNumber = tableNumber;
 	}
 
 }

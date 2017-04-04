@@ -16,6 +16,7 @@ public class Table {
 		this.isAvailable = true;
 		this.isReserved = false;
 		setChairs();
+		setCustomers();
 	}
 
 	public Table() {
@@ -167,7 +168,7 @@ public class Table {
 
 	public void setCustomers() {
 		for (int i = 0; i < getPlacesNumber(); i++) {
-			chairs.add(new Chair(i + 1, getTableNumber()));
+			customers.add(new Customer(i + 1, getTableNumber()));
 		}
 	}
 
@@ -181,7 +182,6 @@ public class Table {
 		}
 		return getChair;
 	}
-
 
 	public void swapTables(Table baseTable, Table tableSuccessor) {
 		int customersNumber = baseTable.getPlacesNumber() - baseTable.countFreeChairs();
