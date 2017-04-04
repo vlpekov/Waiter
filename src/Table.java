@@ -8,7 +8,8 @@ public class Table {
 	private boolean isReserved;
 	// public static ArrayList<Table> tableList = new ArrayList<Table>();
 	private ArrayList<Chair> chairs = new ArrayList<Chair>();
-
+	private ArrayList<Customer> customers = new ArrayList<Customer>();
+	
 	public Table(int tableNumber, int placesNumber) {
 		this.tableNumber = tableNumber;
 		this.placesNumber = placesNumber;
@@ -163,6 +164,24 @@ public class Table {
 		}
 		return countFreeChairs;
 	}
+
+	public void setCustomers() {
+		for (int i = 0; i < getPlacesNumber(); i++) {
+			chairs.add(new Chair(i + 1, getTableNumber()));
+		}
+	}
+
+
+	public Chair getCustomer(int chairNumber) {
+		Chair getChair = null;
+		for (Chair chair : chairs) {
+			if (chair.getChairNumber() == chairNumber) {
+				getChair = chair;
+			}
+		}
+		return getChair;
+	}
+
 
 	public void swapTables(Table baseTable, Table tableSuccessor) {
 		int customersNumber = baseTable.getPlacesNumber() - baseTable.countFreeChairs();
