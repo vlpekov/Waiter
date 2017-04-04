@@ -28,16 +28,6 @@ public class Table {
 		Table table7 = new Table(7, 10);
 		Table table8 = new Table(8, 3);
 		Table table9 = new Table(9, 3);
-		//
-		// tableList.add(table1);
-		// tableList.add(table2);
-		// tableList.add(table3);
-		// tableList.add(table4);
-		// tableList.add(table5);
-		// tableList.add(table6);
-		// tableList.add(table7);
-		// tableList.add(table8);
-		// tableList.add(table9);
 
 		Restaurant.tableList.add(table1);
 		Restaurant.tableList.add(table2);
@@ -142,14 +132,15 @@ public class Table {
 
 	public void setChairs() {
 		for (int i = 0; i < getPlacesNumber(); i++) {
-			chairs.add(new Chair(i + 1));
+			chairs.add(new Chair(i + 1, getTableNumber()));
 		}
 	}
 
 	public void printChairList() {
 		System.out.println("Chairs:");
 		for (Chair chair : this.chairs) {
-			System.out.printf("Chair number: %d, Available: %b\n", chair.getChairNumber(), chair.isFree());
+			chair.chairInfo();
+//			System.out.printf("Chair number: %d, Available: %b\n", chair.getChairNumber(), chair.isFree());
 		}
 	}
 

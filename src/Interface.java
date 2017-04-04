@@ -22,13 +22,11 @@ public class Interface {
 
 	private static JFrame frame;
 	private JFrame frameMenu;
-//	private JLabel reservedTest;
 	private Table currentTable;
 	private JLabel currentReservedSign;
 	private JLabel currentCustomer;
 	private static ArrayList<JLabel> reservedSigns = new ArrayList<JLabel>();
 	private static ArrayList<JLabel> tableInfoLabels = new ArrayList<JLabel>();
-//	private boolean mousePressed = false;
 	private String topChair = "n";
 	private String bottomChair = "s";
 	private String leftChair = "w";
@@ -548,14 +546,12 @@ public class Interface {
 		table1.setIcon(new ImageIcon(Interface.class.getResource("/images/table8a.png")));
 		frame.getContentPane().add(table1);
 		
-		
 		// table 2
 		JLabel table2 = new JLabel("");
 		table2.setBounds(335, 91, 91, 91);
 		tableSet(table2, 2, popupMenuTable, allTablesCustomers, customersTable2);
 		table2.setIcon(new ImageIcon(Interface.class.getResource("/images/table4a.png")));
 		frame.getContentPane().add(table2);
-		
 
 		// table 3
 		JLabel table3 = new JLabel("");
@@ -563,7 +559,6 @@ public class Interface {
 		tableSet(table3, 3, popupMenuTable, allTablesCustomers, customersTable3);
 		table3.setIcon(new ImageIcon(Interface.class.getResource("/images/table4b.png")));
 		frame.getContentPane().add(table3);
-		
 
 		// table 4
 		JLabel table4 = new JLabel("");
@@ -571,7 +566,6 @@ public class Interface {
 		tableSet(table4, 4, popupMenuTable, allTablesCustomers, customersTable4);
 		table4.setIcon(new ImageIcon(Interface.class.getResource("/images/table8b.png")));
 		frame.getContentPane().add(table4);
-		
 
 		// table 5
 		JLabel table5 = new JLabel("");
@@ -580,7 +574,6 @@ public class Interface {
 		table5.setIcon(new ImageIcon(Interface.class.getResource("/images/table10a.png")));
 		frame.getContentPane().add(table5);
 		addPopup(table5, popupMenuTable);
-		
 
 		// table 6
 		JLabel table6 = new JLabel("");
@@ -589,14 +582,12 @@ public class Interface {
 		table6.setIcon(new ImageIcon(Interface.class.getResource("/images/table10b.png")));
 		frame.getContentPane().add(table6);
 		
-
 		// table 7
 		JLabel table7 = new JLabel("");
 		table7.setBounds(589, 357, 101, 194);
 		tableSet(table7, 7, popupMenuTable, allTablesCustomers, customersTable7);
 		table7.setIcon(new ImageIcon(Interface.class.getResource("/images/table10c.png")));
 		frame.getContentPane().add(table7);
-		
 
 		// table 8
 		JLabel table8 = new JLabel("");
@@ -604,7 +595,6 @@ public class Interface {
 		tableSet(table8, 8, popupMenuTable, allTablesCustomers, customersTable8);
 		table8.setIcon(new ImageIcon(Interface.class.getResource("/images/table3b.png")));
 		frame.getContentPane().add(table8);
-		
 
 		// table 9
 		JLabel table9 = new JLabel("");
@@ -613,207 +603,191 @@ public class Interface {
 		table9.setIcon(new ImageIcon(Interface.class.getResource("/images/table3b.png")));
 		frame.getContentPane().add(table9);
 		
-
-		// set chairs
-		JLabel chair3T2 = new JLabel("");
-		chair3T2.setBounds(360, 45, 41, 42);
-		chair3T2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				doubleMouseClickOnChair(customerTable2Ch3, e, 2);
-				// if (e.getClickCount() >= 2) {
-				// customerTable2Ch1.setVisible(true);
-				// Restaurant.getTable(2).occupyTable();
-				// reservedTest.setVisible(false);
-				// getTableInfoLable(currentTable).setText(currentTable.getTabelInfo());
-				// }
-			}
-		});
-		chair3T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
-		frame.getContentPane().add(chair3T2);
-
-		// set table menu
-
-
 		// set chairs
 		// chairs table 1
-
 		JLabel chair1T1 = new JLabel("");
 		chair1T1.setBounds(82, 185, 41, 42);
 		chair1T1.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
-		chairSet(chair1T1, customerTable1Ch1, 1);
+		chairSet(chair1T1, customerTable1Ch1, 1, 1);
 		frame.getContentPane().add(chair1T1);
+		
 
 		JLabel chair2T1 = new JLabel("");
 		chair2T1.setBounds(142, 185, 41, 42);
-		chairSet(chair2T1, customerTable1Ch2, 1);
+		chairSet(chair2T1, customerTable1Ch2, 1, 2);
 		chair2T1.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair2T1);
 
 		JLabel chair3T1 = new JLabel("");
 		chair3T1.setBounds(209, 113, 42, 41);
-		chairSet(chair3T1, customerTable1Ch3, 1);
+		chairSet(chair3T1, customerTable1Ch3, 1, 3);
 		chair3T1.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair3T1);
 
 		JLabel chair4T1 = new JLabel("");
 		chair4T1.setBounds(142, 35, 41, 42);
-		chairSet(chair4T1, customerTable1Ch4, 1);
+		chairSet(chair4T1, customerTable1Ch4, 1, 4);
 		chair4T1.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair4T1);
 		
 		JLabel chair5T1 = new JLabel("");
 		chair5T1.setBounds(82, 35, 41, 42);
-		chairSet(chair5T1, customerTable1Ch5, 1);
+		chairSet(chair5T1, customerTable1Ch5, 1, 5);
 		chair5T1.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair5T1);
 		
 		JLabel chair6T1 = new JLabel("");
 		chair6T1.setBounds(20, 113, 42, 41);
-		chairSet(chair6T1, customerTable1Ch6, 1);
+		chairSet(chair6T1, customerTable1Ch6, 1, 6);
 		chair6T1.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair6T1);
 		
-		//table 2
+		//chairs table 2
 		JLabel chair1T2 = new JLabel("");
 		chair1T2.setBounds(360, 187, 41, 42);
-		chairSet(chair1T2, customerTable2Ch1, 2);
+		chairSet(chair1T2, customerTable2Ch1, 2, 1);
 		chair1T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair1T2);
 
 		JLabel chair2T2 = new JLabel("");
 		chair2T2.setBounds(436, 115, 42, 41);
-		chairSet(chair2T2, customerTable2Ch2, 2);
+		chairSet(chair2T2, customerTable2Ch2, 2, 2);
 		chair2T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair2T2);
+
+		JLabel chair3T2 = new JLabel("");
+		chair3T2.setBounds(360, 45, 41, 42);
+		chairSet(chair1T2, customerTable2Ch1, 2, 3);
+		chair3T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
+		frame.getContentPane().add(chair3T2);
 		
 		JLabel chair4T2 = new JLabel("");
 		chair4T2.setBounds(283, 113, 42, 41);
-		chairSet(chair4T2, customerTable2Ch4, 2);
+		chairSet(chair4T2, customerTable2Ch4, 2, 4);
 		chair4T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair4T2);
 	
-		//table 3
+		//chairs table 3
 		JLabel chair1T3 = new JLabel("");
 		chair1T3.setBounds(583, 187, 41, 42);
-		chairSet(chair1T3, customerTable3Ch1, 3);
+		chairSet(chair1T3, customerTable3Ch1, 3, 1);
 		chair1T3.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair1T3);
 
 		JLabel chair2T3 = new JLabel("");
 		chair2T3.setBounds(659, 115, 42, 41);
-		chairSet(chair2T3, customerTable3Ch2, 3);
+		chairSet(chair2T3, customerTable3Ch2, 3, 2);
 		chair2T3.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair2T3);
 		
 		JLabel chair3T3 = new JLabel("");
 		chair3T3.setBounds(583, 45, 41, 42);
-		chairSet(chair3T3, customerTable3Ch3, 3);
+		chairSet(chair3T3, customerTable3Ch3, 3, 3);
 		chair3T3.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair3T3);
 		
 		JLabel chair4T3 = new JLabel("");
 		chair4T3.setBounds(506, 115, 42, 41);
-		chairSet(chair4T3, customerTable3Ch4, 3);
+		chairSet(chair4T3, customerTable3Ch4, 3, 4);
 		chair4T3.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair4T3);
 		
 
-		//table 4
+		//chairs table 4
 		JLabel chair1T4 = new JLabel("");
 		chair1T4.setBounds(805, 185, 41, 42);
-		chairSet(chair1T4, customerTable4Ch1, 4);
+		chairSet(chair1T4, customerTable4Ch1, 4, 1);
 		chair1T4.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair1T4);
 
 		JLabel chair2T4 = new JLabel("");
 		chair2T4.setBounds(870, 185, 41, 42);
-		chairSet(chair2T4, customerTable4Ch2, 4);
+		chairSet(chair2T4, customerTable4Ch2, 4, 2);
 		chair2T4.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair2T4);
 		
 		JLabel chair3T4 = new JLabel("");
 		chair3T4.setBounds(932, 113, 42, 41);
-		chairSet(chair3T4, customerTable4Ch3, 4);
+		chairSet(chair3T4, customerTable4Ch3, 4, 3);
 		chair3T4.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair3T4);
 		
 		JLabel chair4T4 = new JLabel("");
 		chair4T4.setBounds(870, 35, 41, 42);
-		chairSet(chair4T4, customerTable4Ch4, 4);
+		chairSet(chair4T4, customerTable4Ch4, 4, 4);
 		chair4T4.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair4T4);
 		
 		JLabel chair5T4 = new JLabel("");
 		chair5T4.setBounds(810, 35, 41, 42);
-		chairSet(chair5T4, customerTable4Ch5, 4);
+		chairSet(chair5T4, customerTable4Ch5, 4, 5);
 		chair5T4.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair5T4);
 
 		JLabel chair6T4 = new JLabel("");
 		chair6T4.setBounds(743, 115, 42, 41);
-		chairSet(chair6T4, customerTable4Ch6, 4);
+		chairSet(chair6T4, customerTable4Ch6, 4, 6);
 		chair6T4.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair6T4);
 
 		//table 5
 		JLabel chair1T5 = new JLabel("");
 		chair1T5.setBounds(101, 558, 41, 42);
-		chairSet(chair1T5, customerTable5Ch1, 5);
+		chairSet(chair1T5, customerTable5Ch1, 5, 1);
 		chair1T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair1T5);
 
 		JLabel chair2T5 = new JLabel("");
 		chair2T5.setBounds(182, 513, 42, 41);
-		chairSet(chair2T5, customerTable5Ch2, 5);
+		chairSet(chair2T5, customerTable5Ch2, 5, 2);
 		chair2T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair2T5);
 
 		JLabel chair3T5 = new JLabel("");
 		chair3T5.setBounds(182, 461, 42, 41);
-		chairSet(chair3T5, customerTable5Ch3, 5);
+		chairSet(chair3T5, customerTable5Ch3, 5, 3);
 		chair3T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair3T5);
 
 		JLabel chair4T5 = new JLabel("");
 		chair4T5.setBounds(182, 409, 42, 41);
-		chairSet(chair4T5, customerTable5Ch4, 5);
+		chairSet(chair4T5, customerTable5Ch4, 5, 4);
 		chair4T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair4T5);
 
 		JLabel chair5T5 = new JLabel("");
 		chair5T5.setBounds(182, 357, 42, 41);
-		chairSet(chair5T5, customerTable5Ch5, 5);
+		chairSet(chair5T5, customerTable5Ch5, 5, 5);
 		chair5T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair5T5);
 		
 		JLabel chair6T5 = new JLabel("");
 		chair6T5.setBounds(101, 309, 41, 42);
-		chairSet(chair6T5, customerTable5Ch6, 5);
+		chairSet(chair6T5, customerTable5Ch6, 5, 6);
 		chair6T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair6T5);
 
 		JLabel chair7T5 = new JLabel("");
 		chair7T5.setBounds(20, 357, 42, 41);
-		chairSet(chair7T5, customerTable5Ch7, 5);
+		chairSet(chair7T5, customerTable5Ch7, 5, 7);
 		chair7T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair7T5);
 
 		JLabel chair8T5 = new JLabel("");
 		chair8T5.setBounds(20, 409, 42, 41);
-		chairSet(chair8T5, customerTable5Ch8, 5);
+		chairSet(chair8T5, customerTable5Ch8, 5, 8);
 		chair8T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair8T5);
 		
 		JLabel chair9T5 = new JLabel("");
 		chair9T5.setBounds(20, 461, 42, 41);
-		chairSet(chair9T5, customerTable5Ch9, 5);
+		chairSet(chair9T5, customerTable5Ch9, 5, 9);
 		chair9T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair9T5);
 		
 		JLabel chair10T5 = new JLabel("");
 		chair10T5.setBounds(20, 513, 42, 41);
-		chairSet(chair10T5, customerTable5Ch10, 5);
+		chairSet(chair10T5, customerTable5Ch10, 5, 10);
 		chair10T5.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair10T5);
 
@@ -821,176 +795,164 @@ public class Interface {
 		JLabel chair1T6 = new JLabel("");
 		chair1T6.setBounds(364, 558, 41, 42);
 		chair1T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
-		chairSet(chair1T6, customerTable6Ch1, 6);
+		chairSet(chair1T6, customerTable6Ch1, 6, 1);
 		frame.getContentPane().add(chair1T6);
 
 		JLabel chair2T6 = new JLabel("");
 		chair2T6.setBounds(445, 513, 42, 41);
 		chair2T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair2T6, customerTable6Ch2, 6);
+		chairSet(chair2T6, customerTable6Ch2, 6, 2);
 		frame.getContentPane().add(chair2T6);
 
 		JLabel chair3T6 = new JLabel("");
 		chair3T6.setBounds(445, 461, 42, 41);
 		chair3T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair3T6, customerTable6Ch3, 6);
+		chairSet(chair3T6, customerTable6Ch3, 6, 3);
 		frame.getContentPane().add(chair3T6);
 
 		JLabel chair4T6 = new JLabel("");
 		chair4T6.setBounds(445, 409, 42, 41);
 		chair4T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair4T6, customerTable6Ch4, 6);
+		chairSet(chair4T6, customerTable6Ch4, 6, 4);
 		frame.getContentPane().add(chair4T6);
 
 		JLabel chair5T6 = new JLabel("");
 		chair5T6.setBounds(445, 357, 42, 41);
 		chair5T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair5T6, customerTable6Ch5, 6);
+		chairSet(chair5T6, customerTable6Ch5, 6, 5);
 		frame.getContentPane().add(chair5T6);
 
 		JLabel chair6T6 = new JLabel("");
 		chair6T6.setBounds(364, 309, 41, 42);
 		chair6T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
-		chairSet(chair6T6, customerTable6Ch6, 6);
+		chairSet(chair6T6, customerTable6Ch6, 6, 6);
 		frame.getContentPane().add(chair6T6);
 
 		JLabel chair7T6 = new JLabel("");
 		chair7T6.setBounds(283, 357, 42, 41);
 		chair7T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair7T6, customerTable6Ch7, 6);
+		chairSet(chair7T6, customerTable6Ch7, 6, 7);
 		frame.getContentPane().add(chair7T6);
 
 		JLabel chair8T6 = new JLabel("");
 		chair8T6.setBounds(283, 409, 42, 41);
 		chair8T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair8T6, customerTable6Ch8, 6);
+		chairSet(chair8T6, customerTable6Ch8, 6, 8);
 		frame.getContentPane().add(chair8T6);
 
 		JLabel chair9T6 = new JLabel("");
 		chair9T6.setBounds(283, 461, 42, 41);
 		chair9T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair9T6, customerTable6Ch9, 6);
+		chairSet(chair9T6, customerTable6Ch9, 6, 9);
 		frame.getContentPane().add(chair9T6);
 
 		JLabel chair10T6 = new JLabel("");
 		chair10T6.setBounds(283, 513, 42, 41);
 		chair10T6.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair10T6, customerTable6Ch10, 6);
+		chairSet(chair10T6, customerTable6Ch10, 6, 10);
 		frame.getContentPane().add(chair10T6);
 
 		// Chairs table 7
 		JLabel chair1T7 = new JLabel("");
 		chair1T7.setBounds(619, 558, 41, 42);
 		chair1T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
-		chairSet(chair1T7, customerTable7Ch1, 7);
+		chairSet(chair1T7, customerTable7Ch1, 7, 1);
 		frame.getContentPane().add(chair1T7);
 
 		JLabel chair2T7 = new JLabel("");
 		chair2T7.setBounds(700, 513, 42, 41);
 		chair2T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair2T7, customerTable7Ch2, 7);
+		chairSet(chair2T7, customerTable7Ch2, 7, 2);
 		frame.getContentPane().add(chair2T7);
 
 		JLabel chair3T7 = new JLabel("");
 		chair3T7.setBounds(700, 461, 42, 41);
 		chair3T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair3T7, customerTable7Ch3, 7);
+		chairSet(chair3T7, customerTable7Ch3, 7, 3);
 		frame.getContentPane().add(chair3T7);
 
 		JLabel chair4T7 = new JLabel("");
 		chair4T7.setBounds(700, 409, 42, 41);
 		chair4T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair4T7, customerTable7Ch4, 7);
+		chairSet(chair4T7, customerTable7Ch4, 7, 4);
 		frame.getContentPane().add(chair4T7);
 
 		JLabel chair5T7 = new JLabel("");
 		chair5T7.setBounds(700, 357, 42, 41);
 		chair5T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
-		chairSet(chair5T7, customerTable7Ch5, 7);
+		chairSet(chair5T7, customerTable7Ch5, 7, 5);
 		frame.getContentPane().add(chair5T7);
 
 		JLabel chair6T7 = new JLabel("");
 		chair6T7.setBounds(619, 309, 41, 42);
 		chair6T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
-		chairSet(chair6T7, customerTable7Ch6, 7);
+		chairSet(chair6T7, customerTable7Ch6, 7, 6);
 		frame.getContentPane().add(chair6T7);
 
 		JLabel chair7T7 = new JLabel("");
 		chair7T7.setBounds(538, 357, 42, 41);
 		chair7T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair7T7, customerTable7Ch7, 7);
+		chairSet(chair7T7, customerTable7Ch7, 7, 7);
 		frame.getContentPane().add(chair7T7);
 
 		JLabel chair8T7 = new JLabel("");
 		chair8T7.setBounds(538, 409, 42, 41);
 		chair8T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair8T7, customerTable7Ch8, 7);
+		chairSet(chair8T7, customerTable7Ch8, 7, 8);
 		frame.getContentPane().add(chair8T7);
 
 		JLabel chair9T7 = new JLabel("");
 		chair9T7.setBounds(538, 461, 42, 41);
 		chair9T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair9T7, customerTable7Ch9, 7);
+		chairSet(chair9T7, customerTable7Ch9, 7, 9);
 		frame.getContentPane().add(chair9T7);
 
 		JLabel chair10T7 = new JLabel("");
 		chair10T7.setBounds(538, 513, 42, 41);
 		chair10T7.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
-		chairSet(chair10T7, customerTable7Ch10, 7);
+		chairSet(chair10T7, customerTable7Ch10, 7, 10);
 		frame.getContentPane().add(chair10T7);
 
 		//chairs table 8
 		JLabel chair1T8 = new JLabel("");
 		chair1T8.setBounds(912, 385, 41, 42);
 		chair1T8.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
-		chairSet(chair1T8, customerTable8Ch1, 8);
+		chairSet(chair1T8, customerTable8Ch1, 8, 1);
 		frame.getContentPane().add(chair1T8);
 
 		JLabel chair2T8 = new JLabel("");
 		chair2T8.setBounds(912, 250, 41, 42);
-		chairSet(chair2T8, customerTable8Ch2, 8);
+		chairSet(chair2T8, customerTable8Ch2, 8, 2);
 		chair2T8.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair2T8);
 		
 		JLabel chair3T8 = new JLabel("");
 		chair3T8.setBounds(828, 320, 42, 41);
-		chairSet(chair3T8, customerTable8Ch3, 8);
+		chairSet(chair3T8, customerTable8Ch3, 8, 3);
 		chair3T8.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T8);
 
-
-
-
-
-
+		// chairs table 9
 		JLabel chair1T9 = new JLabel("");
 		chair1T9.setBounds(912, 573, 41, 42);
-		chairSet(chair1T9, customerTable9Ch1, 9);
+		chairSet(chair1T9, customerTable9Ch1, 9, 1);
 		chair1T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairs.png")));
 		frame.getContentPane().add(chair1T9);
 		
 		JLabel chair2T9 = new JLabel("");
 		chair2T9.setBounds(912, 438, 41, 42);
-		chairSet(chair2T9, customerTable9Ch2, 9);
+		chairSet(chair2T9, customerTable9Ch2, 9, 2);
 		chair2T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair2T9);
 
-
 		JLabel chair3T9 = new JLabel("");
 		chair3T9.setBounds(828, 506, 42, 41);
-		chairSet(chair3T9, customerTable9Ch3, 9);
+		chairSet(chair3T9, customerTable9Ch3, 9, 3);
 		chair3T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T9);
 
-//		JLabel label_19 = new JLabel("");
-//		label_19.setBounds(850, 374, 41, 42);
-//		chairSet(chair2T8, customerTable9Ch, 9);
-//		frame.getContentPane().add(label_19);
-
-
-
-
-
+		
+		
 		Label menuText = new Label("MENU");
 		menuText.setBounds(100, 200, 114, 57);
 		frameMenu.getContentPane().add(menuText);
@@ -1212,13 +1174,14 @@ public class Interface {
 		chair.setIcon(new ImageIcon(Interface.class.getResource("/images/chair" + cahirPosition + ".png")));
 	}
 
-	public void chairSet(JLabel chair, JLabel customer, int tableNumber) {
+	public void chairSet(JLabel chair, JLabel customer, int tableNumber, int chairNumber) {
 		chair.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				doubleMouseClickOnChair(customer, e, tableNumber);
 			}
 		});
+		Restaurant.getTable(tableNumber).getChair(chairNumber).setChairLabel(chair);
 	}
 
 	public void chairMouseEvent(JLabel chair, JLabel customer, int tableNumber) {

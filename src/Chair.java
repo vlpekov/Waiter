@@ -1,8 +1,10 @@
+import javax.swing.JLabel;
 
 public class Chair {
 	private int chairNumber;
 	private boolean isFree;
-	private Table table;
+	private int tableNumber;
+	private JLabel chairLabel;
 
 	// private Customer customer;
 
@@ -13,7 +15,7 @@ public class Chair {
 	public Chair(int chairNumber, int tableNumber) {
 		this.chairNumber = chairNumber;
 		this.isFree = true;
-		this.table = Restaurant.getTable(tableNumber);
+		this.tableNumber = tableNumber;
 	}
 
 	public int getChairNumber() {
@@ -29,7 +31,22 @@ public class Chair {
 	}
 
 	public Table getTable() {
-		return table;
+		return Restaurant.getTable(tableNumber);
+	}
+	
+	public int getTableNumber() {
+		return tableNumber;
+	}
+		
+	public JLabel getChairLabel() {
+		return chairLabel;
 	}
 
+	public void setChairLabel(JLabel chairLabel) {
+		this.chairLabel = chairLabel;
+	}
+
+	public void chairInfo () {
+		System.out.printf("Chair number: %d, Table: %d Available: %b\n", getChairNumber(), getTableNumber(), isFree());
+	}
 }
