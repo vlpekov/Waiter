@@ -9,6 +9,10 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -276,6 +280,7 @@ public class MenuListTableEditable extends JPanel {
 		if (isEdited) {
 			saveJTableToArrayList(table);
 			printArrayList(menuFromJTable);
+			saveTableToFile();
 		}
 	}
 
@@ -289,7 +294,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 	}
 
-	public void saveJTableToArrayList(JTable table) {
+	private void saveJTableToArrayList(JTable table) {
 		String name;
 		String quantity;
 		String category;
@@ -319,9 +324,10 @@ public class MenuListTableEditable extends JPanel {
 			category = (String) table.getValueAt(row, column + 3);
 			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
 		}
+		
 	}
 
-	public void printArrayList(ArrayList<RestaurantObjects.MenuItem> menuFromJTablet) {
+	private void printArrayList(ArrayList<RestaurantObjects.MenuItem> menuFromJTablet) {
 		for (RestaurantObjects.MenuItem item : menuFromJTablet) {
 			item.printItem();
 		}
@@ -335,4 +341,37 @@ public class MenuListTableEditable extends JPanel {
 			return false;
 		}
 	}
+
+	private void saveTableToFile() {
+
+		File file = new File("restaurantMenu.sav");
+		if (file.exists()) {
+			replaceFile(file);
+		}
+		createFile();
+	}
+
+	private void replaceFile(File file) {
+		File tempFile = new File("restaurantMenu.backup");
+		if (tempFile.exists()) {
+			tempFile.delete();
+		}
+		new File("restaurantMenu.sav").renameTo(new File("restaurantMenu.backup"));
+	}
+
+	private void createFile() {
+		try
+	      {
+	         FileOutputStream fileOut = new FileOutputStream("restaurantMenu.sav");
+	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	         out.writeObject(menuFromJTable);
+	         out.close();
+	         fileOut.close();
+	      }
+	      catch(IOException i)
+	      {
+	          i.printStackTrace();
+	      }
+	}
+
 }
