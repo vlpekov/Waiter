@@ -105,6 +105,12 @@ public class Interface {
 		menuBar.add(mnEdit);
 
 		JMenuItem mntmEditMenu = new JMenuItem("Edit Menu");
+		mntmEditMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				showEditMenuTable();
+			}
+		});
 		mnEdit.add(mntmEditMenu);
 
 		JMenuItem mntmEditTables = new JMenuItem("Edit Tables");
@@ -1321,5 +1327,10 @@ public class Interface {
 	public void showMenuTable (){
 		MenuListTable menuTable = new MenuListTable();
 		menuTable.runMenuTable();
+	}
+	
+	public void showEditMenuTable (){
+		MenuListTableEditable editableMenuTable = new MenuListTableEditable();
+		editableMenuTable.runMenuTable();
 	}
 }
