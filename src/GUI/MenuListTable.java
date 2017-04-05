@@ -2,6 +2,7 @@ package GUI;
 
 import RestaurantObjects.*;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ public class MenuListTable extends JPanel {
 //		String[][] data = new String[1000][];
 
 		DefaultTableModel tableModel = new DefaultTableModel(header, 0);
-
+		
 		JTable table = new JTable(tableModel);
 		table.getColumn("Име").setMinWidth(400);
 		table.getColumn("Цена").setMinWidth(60);
@@ -75,7 +76,7 @@ runMenuTableTest();
 	public static void runMenuTableTest (){
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
-
+		
 		MenuListTable menuTable = new MenuListTable();
 		tableFrame.setTitle("Меню");
 //		tableFrame.setSize(800, 400);
