@@ -51,6 +51,8 @@ public class MenuListTable extends JPanel {
 		   tableModel.addRow(data);
 
 		}
+		table.getTableHeader().setReorderingAllowed(false);
+		table.setDefaultEditor(Object.class, null);
 		
 	}
 
@@ -73,6 +75,7 @@ runMenuTableTest();
 	public static void runMenuTableTest (){
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
+
 		MenuListTable menuTable = new MenuListTable();
 		tableFrame.setTitle("Меню");
 //		tableFrame.setSize(800, 400);
