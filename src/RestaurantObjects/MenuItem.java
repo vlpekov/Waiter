@@ -4,14 +4,14 @@ public class MenuItem {
 	private String name;
 	private double price;
 	private String category;
-	private String weight;
+	private String quantity;
 	
 	
-	public MenuItem(String name, double price, String weight, String category) {
+	public MenuItem(String name, double price, String quantity, String category) {
 		this.name = name;
 		this.price = price;
 		this.category = category;
-		this.weight = weight;
+		this.quantity = quantity;
 	}
 	public String getName() {
 		return name;
@@ -30,6 +30,12 @@ public class MenuItem {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public String getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
 	}
 	
 	
