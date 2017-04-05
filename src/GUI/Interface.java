@@ -110,6 +110,18 @@ public class Interface {
 		JMenuItem mntmEditTables = new JMenuItem("Edit Tables");
 		mnEdit.add(mntmEditTables);
 		
+		JMenu mnView = new JMenu("View");
+		menuBar.add(mnView);
+		
+		JMenuItem mntmShowMenu = new JMenuItem("Menu");
+		mntmShowMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				showMenuTable();
+			}
+		});
+		mnView.add(mntmShowMenu);
+		
 		// Customer pop-up menu
 		JPopupMenu popupMenuCustomer = new JPopupMenu();
 		JMenuItem mntmRemove = new JMenuItem("Remove");
@@ -1304,5 +1316,10 @@ public class Interface {
 		while (currentImageNumber==randomNumber(1, 10));
 		System.out.println("newImageNumber " + newImageNumber);
 		return newImageNumber;
+	}
+	
+	public void showMenuTable (){
+		MenuListTable menuTable = new MenuListTable();
+		menuTable.runMenuTable();
 	}
 }

@@ -33,9 +33,9 @@ public class MenuListTable extends JPanel {
 		table.setPreferredScrollableViewportSize(new Dimension(770, 330));
 		table.setFillsViewportHeight(true);
 
-		JScrollPane js = new JScrollPane(table);
-		js.setVisible(true);
-		add(js);
+		JScrollPane tableScroll = new JScrollPane(table);
+		tableScroll.setVisible(true);
+		add(tableScroll);
 		
 		new Menu();
 
@@ -51,18 +51,33 @@ public class MenuListTable extends JPanel {
 		   tableModel.addRow(data);
 
 		}
+		
 	}
 
 	public static void main(String[] a) {
 
+runMenuTableTest();
+
+	}
+	public void runMenuTable (){
 		JFrame tableFrame = new JFrame();
+		tableFrame.setBounds(200, 200, 800, 400);
 		MenuListTable menuTable = new MenuListTable();
 		tableFrame.setTitle("Меню");
-		tableFrame.setSize(800, 400);
+//		tableFrame.setSize(800, 400);
+		tableFrame.setVisible(true);
+//		tableFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tableFrame.add(menuTable);
+	}
+	
+	public static void runMenuTableTest (){
+		JFrame tableFrame = new JFrame();
+		tableFrame.setBounds(200, 200, 800, 400);
+		MenuListTable menuTable = new MenuListTable();
+		tableFrame.setTitle("Меню");
+//		tableFrame.setSize(800, 400);
 		tableFrame.setVisible(true);
 		tableFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tableFrame.add(menuTable);
-
 	}
-
 }
