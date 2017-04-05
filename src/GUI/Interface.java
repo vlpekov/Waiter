@@ -1331,6 +1331,6 @@ public class Interface {
 	
 	public void showEditMenuTable (){
 		MenuListTableEditable editableMenuTable = new MenuListTableEditable();
-		editableMenuTable.runMenuTable();
+		editableMenuTable.runTable();
 	}
 }

@@ -37,6 +37,10 @@ public class MenuItem {
 	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
+	public void printItem() {
+		System.out.println(getName() + ", цена: " + getPrice() + ", количество: " + getQuantity() + ", категория: " + getCategory());
+		
+	}
 	
 	
 }

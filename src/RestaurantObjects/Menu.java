@@ -28,10 +28,10 @@ public class Menu {
 		menuList.add(new MenuItem("Овчарска салата", 3.40, "350g", "салати"));
 		menuList.add(new MenuItem("Зелена салата", 2.40, "200g", "салати"));
 		menuList.add(new MenuItem("Салата \"Снежанка\"", 2.80, "150g", "салати"));
-		menuList.add(new MenuItem("Панирано сиране", 3.30, "250g", "предястия"));
+		menuList.add(new MenuItem("Панирано сирене", 3.30, "250g", "предястия"));
 		menuList.add(new MenuItem("Паниран кашкавал", 4.00, "250g", "предястия"));
 		menuList.add(new MenuItem("Пържени картофи", 2.50, "300g", "предястия"));
-		menuList.add(new MenuItem("Пържени картофи със сиране", 3.00, "350g", "предястия"));
+		menuList.add(new MenuItem("Пържени картофи със сирене", 3.00, "350g", "предястия"));
 		menuList.add(new MenuItem("Зеленчукова супа", 3.50, "400g", "супи"));
 		menuList.add(new MenuItem("Рибена супа", 4.40, "400g", "супи"));
 		menuList.add(new MenuItem("Гъбена супа", 3.90, "400g", "супи"));

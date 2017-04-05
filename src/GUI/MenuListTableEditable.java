@@ -9,6 +9,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -24,6 +25,7 @@ import RestaurantObjects.Menu;
 
 public class MenuListTableEditable extends JPanel {
 
+	static ArrayList<RestaurantObjects.MenuItem> menuFromJTable = new ArrayList<RestaurantObjects.MenuItem>();
 	private static final String LINE_BREAK = "\n";
 	private static final String CELL_BREAK = "\t";
 	private static final Clipboard CLIPBOARD = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -31,14 +33,13 @@ public class MenuListTableEditable extends JPanel {
 	public MenuListTableEditable() {
 
 		String[] header = { "Име", "Цена", "Количество", "Категория" };
-		// String[][] data = new String[1000][];
-
 		DefaultTableModel tableModel = new DefaultTableModel(header, 0);
-
 		JTable table = new JTable(tableModel);
+
 		setTableProperties(table);
-		new Menu();
+
 		fillTable(table, tableModel);
+
 		setPopupMenu(table, tableModel);
 	}
 
@@ -46,24 +47,20 @@ public class MenuListTableEditable extends JPanel {
 		runMenuTableTest();
 	}
 
-	public void runMenuTable() {
+	public void runTable() {
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
 		MenuListTableEditable menuTable = new MenuListTableEditable();
-		tableFrame.setTitle("Меню");
-		// tableFrame.setSize(800, 400);
+		tableFrame.setTitle("Меню - редактиране");
 		tableFrame.setVisible(true);
-		// tableFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tableFrame.add(menuTable);
 	}
 
 	public static void runMenuTableTest() {
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
-
 		MenuListTableEditable menuTable = new MenuListTableEditable();
-		tableFrame.setTitle("Меню");
-		// tableFrame.setSize(800, 400);
+		tableFrame.setTitle("Меню - редактиране");
 		tableFrame.setVisible(true);
 		tableFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tableFrame.add(menuTable);
@@ -166,6 +163,7 @@ public class MenuListTableEditable extends JPanel {
 	}
 
 	private void fillTable(JTable table, DefaultTableModel tableModel) {
+		new Menu();
 		for (int i = 0; i < Menu.getMenuList().size(); i++) {
 			String name = Menu.getMenuList().get(i).getName();
 			double price = Menu.getMenuList().get(i).getPrice();
@@ -273,18 +271,68 @@ public class MenuListTableEditable extends JPanel {
 		});
 	}
 
-	private void isTableEdited(boolean isEdited) {
+	private void isTableEdited(boolean isEdited, JTable table) {
 		System.out.println("Table is edited" + isEdited);
+		if (isEdited) {
+			saveJTableToArrayList(table);
+			printArrayList(menuFromJTable);
+		}
 	}
 
 	private void setTableMouseListener(JTable table) {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				isTableEdited(!table.isEditing());
+				isTableEdited(!table.isEditing(), table);
 
 			}
 		});
 	}
 
+	public void saveJTableToArrayList(JTable table) {
+		String name;
+		String quantity;
+		String category;
+		double price;
+		menuFromJTable.clear();
+		int column = 0;
+		for (int row = 0; row < table.getRowCount(); row++) {
+			if (table.getValueAt(row, column) == null || table.getValueAt(row, column + 1) == null
+					|| table.getValueAt(row, column + 2) == null || table.getValueAt(row, column + 3) == null) {
+				continue;
+			}
+
+			Object getPrice = table.getValueAt(row, column + 1);
+			if (getPrice instanceof Double) {
+				price = (double) table.getValueAt(row, column + 1);
+			} else {
+				String tempString = getPrice.toString().replace(',', '.');
+				if (isDouble(tempString)) {
+					price = Double.parseDouble(tempString);
+				} else {
+					continue;
+				}
+
+			}
+			name = (String) table.getValueAt(row, column);
+			quantity = (String) table.getValueAt(row, column + 2);
+			category = (String) table.getValueAt(row, column + 3);
+			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
+		}
+	}
+
+	public void printArrayList(ArrayList<RestaurantObjects.MenuItem> menuFromJTablet) {
+		for (RestaurantObjects.MenuItem item : menuFromJTablet) {
+			item.printItem();
+		}
+	}
+
+	private boolean isDouble(String string) {
+		try {
+			Double.parseDouble(string);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
 }
