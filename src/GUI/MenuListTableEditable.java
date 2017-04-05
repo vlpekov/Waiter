@@ -162,6 +162,7 @@ public class MenuListTableEditable extends JPanel {
 		tableScroll.setVisible(true);
 		add(tableScroll);
 		table.getTableHeader().setReorderingAllowed(false);
+		setTableMouseListener(table);
 	}
 
 	private void fillTable(JTable table, DefaultTableModel tableModel) {
@@ -170,13 +171,12 @@ public class MenuListTableEditable extends JPanel {
 			double price = Menu.getMenuList().get(i).getPrice();
 			String quantity = Menu.getMenuList().get(i).getQuantity();
 			String category = Menu.getMenuList().get(i).getCategory();
-
 			Object[] data = { name, price, quantity, category };
 			tableModel.addRow(data);
 		}
 	}
-	
-	private void setPopupMenu (JTable table, DefaultTableModel tableModel) {
+
+	private void setPopupMenu(JTable table, DefaultTableModel tableModel) {
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(table, popupMenu);
 
@@ -228,7 +228,7 @@ public class MenuListTableEditable extends JPanel {
 				data = (Vector<?>) row.clone();
 				tableModel.insertRow(selectedRow, data);
 				table.clearSelection();
-				table.addRowSelectionInterval(selectedRow,selectedRow);
+				table.addRowSelectionInterval(selectedRow, selectedRow);
 			}
 		});
 		popupMenu.add(mntmDuplicate);
@@ -272,4 +272,19 @@ public class MenuListTableEditable extends JPanel {
 			}
 		});
 	}
+
+	private void isTableEdited(boolean isEdited) {
+		System.out.println("Table is edited" + isEdited);
+	}
+
+	private void setTableMouseListener(JTable table) {
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				isTableEdited(!table.isEditing());
+
+			}
+		});
+	}
+
 }
