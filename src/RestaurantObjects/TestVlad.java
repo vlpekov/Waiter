@@ -1,3 +1,4 @@
+package RestaurantObjects;
 
 public class TestVlad {
 

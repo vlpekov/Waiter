@@ -1,3 +1,4 @@
+package GUI;
 import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -15,6 +16,10 @@ import java.awt.Color;
 import javax.swing.JPopupMenu;
 import java.awt.Component;
 import javax.swing.SwingConstants;
+
+import RestaurantObjects.Restaurant;
+import RestaurantObjects.Table;
+
 import java.awt.Label;
 import java.awt.Cursor;
 

@@ -1,3 +1,4 @@
+package RestaurantObjects;
 import java.util.ArrayList;
 
 public class Restaurant {
