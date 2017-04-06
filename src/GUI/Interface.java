@@ -87,9 +87,9 @@ public class Interface {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 
-		frameMenu = new JFrame();
-		frameMenu.setBounds(300, 300, 650, 300);
-		frameMenu.setVisible(false);
+		OrderDialog frameMenu = new OrderDialog();
+//		frameMenu.setBounds(300, 300, 650, 300);
+//		frameMenu.setVisible(false);
 
 		// customers lists
 		Map<Integer, JLabel> customersTable1 = new HashMap<Integer, JLabel>(15);
@@ -944,9 +944,9 @@ public class Interface {
 		chair3T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T9);
 
-		Label menuText = new Label("MENU");
-		menuText.setBounds(100, 200, 114, 57);
-		frameMenu.getContentPane().add(menuText);
+//		Label menuText = new Label("MENU");
+//		menuText.setBounds(100, 200, 114, 57);
+//		frameMenu.getContentPane().add(menuText);
 
 	}
 
@@ -1111,7 +1111,7 @@ public class Interface {
 	private void doubleMouseClickOnCustomer(MouseEvent e) {
 		if (e.getClickCount() >= 2) {
 			System.out.println("double clicked");
-			frameMenu.setVisible(true);
+			runOrderDialog();
 		}
 	}
 
@@ -1262,5 +1262,18 @@ public class Interface {
 	private void showEditMenuTable() {
 		MenuListTableEditable editableMenuTable = new MenuListTableEditable();
 		editableMenuTable.runTable();
+	}
+	private void runOrderDialog() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					OrderDialog window = new OrderDialog();
+					window.frame.setLocation(350, 300);
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
