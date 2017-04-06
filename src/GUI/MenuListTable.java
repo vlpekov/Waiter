@@ -10,11 +10,15 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class MenuListTable extends JPanel {
 	int currentRow;
@@ -125,10 +129,12 @@ public class MenuListTable extends JPanel {
 		add(tableScroll);
 
 		menuTableMouseEvent(table);
+
 	}
 
 	private void getDataFromCurrentRow(JTable table, int currentRow) {
 		System.out.println(table.getValueAt(currentRow, firstColumn));
 		System.out.println(table.getValueAt(currentRow, secondColumn));
 	}
+
 }

@@ -16,6 +16,8 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -23,7 +25,9 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import RestaurantObjects.Menu;
 
@@ -167,6 +171,7 @@ public class MenuListTableEditable extends JPanel {
 		add(tableScroll);
 		table.getTableHeader().setReorderingAllowed(false);
 		setTableMouseListener(table);
+		setUpCategoryColumn(table, table.getColumnModel().getColumn(fourthColumn));
 	}
 
 	private void fillTable(JTable table, DefaultTableModel tableModel) {
@@ -377,5 +382,20 @@ public class MenuListTableEditable extends JPanel {
 	          i.printStackTrace();
 	      }
 	}
+	public void setUpCategoryColumn(JTable table, TableColumn fourthColumn) {
+		JComboBox comboBox = new JComboBox();
+		comboBox.addItem("безалкохолни напитки");
+		comboBox.addItem("алкохолни напитки");
+		comboBox.addItem("супи");
+		comboBox.addItem("предястия");
+		comboBox.addItem("салати");
+		comboBox.addItem("основни ястия");
+		comboBox.addItem("десерти");
+		comboBox.addItem("други");
+		fourthColumn.setCellEditor(new DefaultCellEditor(comboBox));
 
+		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+		renderer.setToolTipText("Натисни за избор");
+		fourthColumn.setCellRenderer(renderer);
+	}
 }
