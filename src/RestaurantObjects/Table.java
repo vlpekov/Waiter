@@ -1,4 +1,5 @@
 package RestaurantObjects;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,10 +10,13 @@ public class Table {
 	private int placesNumber;
 	private boolean isAvailable;
 	private boolean isReserved;
+	private double bill;
+
 	// public static ArrayList<Table> tableList = new ArrayList<Table>();
 	private ArrayList<Chair> chairs = new ArrayList<Chair>();
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
-	
+
+
 	public Table(int tableNumber, int placesNumber) {
 		this.tableNumber = tableNumber;
 		this.placesNumber = placesNumber;
@@ -44,6 +48,10 @@ public class Table {
 		Restaurant.tableList.add(table8);
 		Restaurant.tableList.add(table9);
 
+	}
+
+	public ArrayList<Customer> getCustomersArrayList() {
+		return customers;
 	}
 
 	public int getTableNumber() {
@@ -78,6 +86,13 @@ public class Table {
 		this.isReserved = isReserved;
 	}
 
+	public double getBill() {
+		return bill;
+	}
+
+	public void setBill(double bill) {
+		this.bill = bill;
+	}
 	// public void printTableList() {
 	// System.out.println("Table list:");
 	// for (Table table : tableList) {
@@ -145,7 +160,8 @@ public class Table {
 		System.out.println("Chairs:");
 		for (Chair chair : this.chairs) {
 			chair.chairInfo();
-//			System.out.printf("Chair number: %d, Available: %b\n", chair.getChairNumber(), chair.isFree());
+			// System.out.printf("Chair number: %d, Available: %b\n",
+			// chair.getChairNumber(), chair.isFree());
 		}
 	}
 
@@ -153,10 +169,11 @@ public class Table {
 		System.out.println("Customers:");
 		for (Customer customer : customers) {
 			customer.customerInfo();
-//			System.out.printf("Chair number: %d, Available: %b\n", chair.getChairNumber(), chair.isFree());
+			// System.out.printf("Chair number: %d, Available: %b\n",
+			// chair.getChairNumber(), chair.isFree());
 		}
 	}
-	
+
 	public Chair getChair(int chairNumber) {
 		Chair getChair = null;
 		for (Chair chair : chairs) {
@@ -183,7 +200,6 @@ public class Table {
 		}
 	}
 
-
 	public Customer getCustomer(int customerNumber) {
 		Customer getCustomer = null;
 		for (Customer customer : customers) {
@@ -193,11 +209,11 @@ public class Table {
 		}
 		return getCustomer;
 	}
-	
+
 	public Customer getCustomer(JLabel customerLabel) {
 		Customer getCustomer = null;
 		for (Customer customer : customers) {
-			if (customer.getCustomerLabel() == customerLabel) {
+			if (customer.getCustomerLabel().equals(customerLabel)) {
 				getCustomer = customer;
 			}
 		}
@@ -217,7 +233,7 @@ public class Table {
 			chair.setFree(true);
 		}
 	}
-	
+
 	public String getTabelInfo() {
 		String tableInfo = "";
 		if (isReserved) {
@@ -229,6 +245,17 @@ public class Table {
 		}
 		return tableInfo;
 	}
-	
 
+	public double getTableBill () {
+		double bill=0;
+		for (Customer customer : customers) {
+			bill += customer.getCustomerBill();
+			System.out.println("Сметката на клиент" + customer.getCustomerNumber() + " е " + customer.getCustomerBill());
+		}
+//		String str = String.format("%1.2f", bill);
+//		System.out.println("Сметката на маса " + tableNumber + " е: " + bill);
+//		bill = Double.valueOf(str);
+		System.out.println("Сметката на маса " + tableNumber + " е: " + bill);
+		return bill;
+	}
 }

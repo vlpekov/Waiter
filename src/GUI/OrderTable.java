@@ -13,7 +13,9 @@ import java.util.Arrays;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SizeAction;
@@ -27,20 +29,21 @@ public class OrderTable extends JPanel {
 	private final int secondColumn = 1;
 	private final int thirdColumn = 2;
 	private final int fourthColumn = 3;
-
+	private JTable table;
+	private static DefaultTableModel tableModel;
 
 	public OrderTable() {
 
 		String[] header = { "Име", "Цена", "Количество"};
 
-		DefaultTableModel tableModel = new DefaultTableModel(header, 0);
+		tableModel = new DefaultTableModel(header, 0);
 		setSize(400, 200);
-		JTable table = new JTable(tableModel);
+		this.table = new JTable(tableModel);
 		table.setFillsViewportHeight(true);
 
-		JScrollPane tableScroll = new JScrollPane(table);
-		tableScroll.setVisible(true);
-		add(tableScroll);
+//		JScrollPane tableScroll = new JScrollPane(table);
+//		tableScroll.setVisible(true);
+//		add(tableScroll);
 		setTableProperties(table);
 		new Menu();
 
@@ -56,6 +59,8 @@ public class OrderTable extends JPanel {
 //		}
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setDefaultEditor(Object.class, null);
+		
+
 	}
 
 	public static void main(String[] args) {
@@ -64,13 +69,42 @@ public class OrderTable extends JPanel {
 
 	}
 
-	public void runMenuTable() {
+	public static void addNewRow (String name, double price, String quantity) {
+		Object[] data = { name, price, quantity };
+		tableModel.addRow(data);
 	}
+	
+	public void deleteRow (int row) {
+		tableModel.removeRow(row);
+	}
+	
+	public double sumItemPrices() {
+		double sum = 0;
+		    for (int i = 0; i < table.getRowCount(); i++){
+		        double itemPrice = (double) table.getValueAt(i, 1);
+		        sum += itemPrice;
+		    }
+		    System.out.println(sum);
+		    setSumCustomer(sum);
+		    setSumTable(sum);
+		    return sum;
+	}
+	
+	private void setSumTable(double sum) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void setSumCustomer(double sum) {
+		OrderDialog.getCustomerObject().setCustomerBill(sum);;
+		
+	}
+
 
 	public static void runMenuTableTest() {
 	}
 
-	public void setTableProperties(JTable table) {
+	private void setTableProperties(JTable table) {
 		table.getColumn("Име").setMinWidth(200);
 		table.getColumn("Име").setMaxWidth(300);
 		table.getColumn("Цена").setMinWidth(40);
@@ -79,7 +113,8 @@ public class OrderTable extends JPanel {
 		table.getColumn("Количество").setMaxWidth(100);
 		table.getColumn("Количество").setResizable(false);
 		table.getColumn("Цена").setResizable(false);
-
+		table.setPreferredScrollableViewportSize(new Dimension(450,180));
+        table.setFillsViewportHeight(true);
 		JScrollPane tableScroll = new JScrollPane(table);
 		tableScroll.setVisible(true);
 		add(tableScroll);

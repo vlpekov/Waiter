@@ -19,6 +19,7 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import javax.swing.SwingConstants;
 
+import RestaurantObjects.Customer;
 import RestaurantObjects.Menu;
 import RestaurantObjects.Restaurant;
 import RestaurantObjects.Table;
@@ -30,9 +31,9 @@ public class Interface {
 
 	private static JFrame frame;
 	private JFrame frameMenu;
-	private Table currentTable;
+	private static Table currentTable;
 	private JLabel currentReservedSign;
-	private JLabel currentCustomer;
+	private static JLabel currentCustomer;
 	private static ArrayList<JLabel> reservedSigns = new ArrayList<JLabel>();
 	private static ArrayList<JLabel> tableInfoLabels = new ArrayList<JLabel>();
 	private String topChair = "n";
@@ -62,12 +63,16 @@ public class Interface {
 		System.out.println("-----------------------");
 	}
 
-	private Table getCurrentTable() {
+	public static Table getCurrentTable() {
 		return currentTable;
 	}
 
 	private void setCurrentTable(int tableNumber) {
 		this.currentTable = Restaurant.getTable(tableNumber);
+	}
+
+	public static JLabel getCurrentCustomer() {
+		return currentCustomer;
 	}
 
 	/**
@@ -82,6 +87,7 @@ public class Interface {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Сервитьор");
 		frame.setBounds(100, 100, 1000, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JMenuBar menuBar = new JMenuBar();
@@ -104,10 +110,10 @@ public class Interface {
 		Map<Table, Map<Integer, JLabel>> allTablesCustomers = new HashMap<Table, Map<Integer, JLabel>>(15);
 
 		// menu bar
-		JMenu mnEdit = new JMenu("Edit");
+		JMenu mnEdit = new JMenu("Редакция");
 		menuBar.add(mnEdit);
 
-		JMenuItem mntmEditMenu = new JMenuItem("Edit Menu");
+		JMenuItem mntmEditMenu = new JMenuItem("Редакция меню");
 		mntmEditMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -116,7 +122,7 @@ public class Interface {
 		});
 		mnEdit.add(mntmEditMenu);
 
-		JMenuItem mntmEditTables = new JMenuItem("Restore menu");
+		JMenuItem mntmEditTables = new JMenuItem("Възстановяване на меню");
 		mntmEditTables.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -129,10 +135,10 @@ public class Interface {
 		});
 		mnEdit.add(mntmEditTables);
 
-		JMenu mnView = new JMenu("View");
+		JMenu mnView = new JMenu("Преглед");
 		menuBar.add(mnView);
 
-		JMenuItem mntmShowMenu = new JMenuItem("Menu");
+		JMenuItem mntmShowMenu = new JMenuItem("Меню");
 		mntmShowMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
@@ -506,7 +512,7 @@ public class Interface {
 
 		// tables menu
 		JPopupMenu popupMenuTable = new JPopupMenu();
-		JMenuItem mntmClearTable = new JMenuItem("Clear table");
+		JMenuItem mntmClearTable = new JMenuItem("Освободи масата");
 		popupMenuTable.add(mntmClearTable);
 		mntmClearTable.addMouseListener(new MouseAdapter() {
 
@@ -521,7 +527,7 @@ public class Interface {
 			}
 		});
 
-		JMenuItem mntmReservedTable = new JMenuItem("Reserved table");
+		JMenuItem mntmReservedTable = new JMenuItem("Резервиране на масата");
 		popupMenuTable.add(mntmReservedTable);
 		mntmReservedTable.addMouseListener(new MouseAdapter() {
 			@Override
@@ -533,6 +539,20 @@ public class Interface {
 			}
 		});
 
+		
+		JMenuItem getBill = new JMenuItem("Приключване на сметката");
+		popupMenuTable.add(getBill);
+		getBill.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				currentTable.getTableBill();
+				removeCustomers(currentTable, allTablesCustomers);
+				currentTable.release();
+				currentReservedSign.setVisible(false);
+				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
+			}
+		});
+		
 		// set tables
 		// table 1
 		JLabel table1 = new JLabel("");
@@ -1110,8 +1130,9 @@ public class Interface {
 
 	private void doubleMouseClickOnCustomer(MouseEvent e) {
 		if (e.getClickCount() >= 2) {
-			System.out.println("double clicked");
+			System.out.println("Open order dialog");
 			runOrderDialog();
+			OrderDialog.setCurrentCustomer(getCustomerObject(currentCustomer));
 		}
 	}
 
@@ -1189,6 +1210,7 @@ public class Interface {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				currentCustomer = customer;
+				
 			}
 		});
 		customersTable.put(customerNumber, customer);
@@ -1276,6 +1298,15 @@ public class Interface {
 			}
 		});
 	}
-	
+	private Customer getCustomerObject (JLabel currentCustomer) {
+		Customer getCustomer;
+		for (Table table : Restaurant.tableList) {
+			if (table.getCustomer(currentCustomer)!=null) {
+				return table.getCustomer(currentCustomer);
+			}
+
+		}
+		return null;
+	}
 
 }

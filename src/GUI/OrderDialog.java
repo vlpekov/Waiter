@@ -33,8 +33,10 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import RestaurantObjects.Customer;
 import RestaurantObjects.Menu;
 import RestaurantObjects.MenuItem;
+import RestaurantObjects.Table;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
@@ -45,6 +47,9 @@ public class OrderDialog {
 	JFrame frame;
 	private JTable tableOrder;
 	private JTable table;
+	public static double currentBill;
+	private static Customer customerObject;
+	private static Table tableObject;
 
 	/**
 	 * Launch the application.
@@ -71,6 +76,19 @@ public class OrderDialog {
 
 	public static void run() {
 
+	}
+
+	public static void setCurrentCustomer(Customer currentCustomer) {
+		customerObject = currentCustomer;
+		setCurrentTable(customerObject);
+	}
+
+	public static void setCurrentTable(Customer currentCustomere) {
+		tableObject = currentCustomere.getCustomerTable();
+	}
+
+	public static Customer getCustomerObject() {
+		return customerObject;
 	}
 
 	/**
@@ -131,19 +149,11 @@ public class OrderDialog {
 		panel.add(categoryComboBox);
 
 		itemComboBox.setModel(models[4]);
-		JButton ordetButton = new JButton("Добави");
-		ordetButton.setBounds(310, 65, 145, 23);
-		panel.add(ordetButton);
+		JButton addButton = new JButton("Добави");
+		addButton.setBounds(310, 65, 145, 23);
+		panel.add(addButton);
 
 		panel.setLayout(null);
-
-		JButton orderButton = new JButton("Поръчай");
-		orderButton.setBounds(235, 235, 105, 23);
-		orderButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				frame.dispose();
-			}
-		});
 
 		JButton cancelButton = new JButton("Отмени");
 		cancelButton.setBounds(350, 235, 105, 23);
@@ -157,6 +167,12 @@ public class OrderDialog {
 		button_2.setBounds(310, 36, 145, 23);
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				showMenuTable();
+			}
+
+			private void showMenuTable() {
+				MenuListOrder menuTable = new MenuListOrder();
+				menuTable.runMenuTable();
 			}
 		});
 		panel.add(button_2);
@@ -166,13 +182,36 @@ public class OrderDialog {
 		frame.getContentPane().add(panelBottom);
 		panelBottom.setLayout(null);
 		panelBottom.add(cancelButton);
-		panelBottom.add(orderButton);
+
 		OrderTable menuList = new OrderTable();
 		menuList.setBounds(0, 0, 465, 224);
 		panelBottom.add(menuList);
 		FlowLayout flowLayout = (FlowLayout) menuList.getLayout();
 		flowLayout.setAlignOnBaseline(true);
 
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(menuList, popupMenu);
+
+		JMenuItem menuItem = new JMenuItem("Премахни");
+		menuItem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				menuList.deleteRow(selectedRow);
+			}
+		});
+		popupMenu.add(menuItem);
+
+		JButton orderButton = new JButton("Поръчай");
+		orderButton.setBounds(235, 235, 105, 23);
+		orderButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				menuList.sumItemPrices();
+				// frame.dispose();
+			}
+
+		});
+		panelBottom.add(orderButton);
 	}
 
 	// private void addItemsToCategoryComboBox(JComboBox categoryComboBox,
@@ -244,9 +283,6 @@ public class OrderDialog {
 
 	}
 
-	private static void addPopup(Component component, final JPopupMenu popup) {
-	}
-
 	// private void setTableProperties(JTable tableOrder) {
 	// tableOrder.setBounds(38, 120, 397, 191);
 	// tableOrder.getColumn("Име").setMinWidth(400);
@@ -265,7 +301,7 @@ public class OrderDialog {
 	//
 	// }
 
-	private void fillTable(JTable table, DefaultTableModel tableModel) {
+	private void tableModel(JTable table, DefaultTableModel tableModel) {
 		new Menu();
 		for (int i = 0; i < Menu.getMenuList().size(); i++) {
 			String name = Menu.getMenuList().get(i).getName();
@@ -277,26 +313,22 @@ public class OrderDialog {
 		}
 	}
 
-	private void setPopupMenu(JTable table, DefaultTableModel tableModel) {
-		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(table, popupMenu);
-
-		JMenuItem menuRemove = new JMenuItem("Премахни");
-		menuRemove.addMouseListener(new MouseAdapter() {
-			@Override
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
-				int selectedRow = table.getSelectedRow();
-				tableModel.removeRow(selectedRow);
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
 			}
-		});
-		popupMenu.add(menuRemove);
 
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent event) {
-				Point point = event.getPoint();
-				int currentRow = table.rowAtPoint(point);
-				table.setRowSelectionInterval(currentRow, currentRow);
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
 	}

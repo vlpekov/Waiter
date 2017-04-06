@@ -132,9 +132,13 @@ public class MenuListOrder extends JPanel {
 
 	}
 
-	private void getDataFromCurrentRow(JTable table, int currentRow) {
-		System.out.println(table.getValueAt(currentRow, firstColumn));
-		System.out.println(table.getValueAt(currentRow, secondColumn));
+	private Object[] getDataFromCurrentRow(JTable table, int currentRow) {
+		String name = (String) table.getValueAt(currentRow, firstColumn);
+		double price = (double) table.getValueAt(currentRow, secondColumn);
+		String quantity = (String) table.getValueAt(currentRow, thirdColumn);
+		Object[] data = { name, price, quantity };
+		OrderTable.addNewRow(name, price, quantity);
+		return data;
 	}
 
 }

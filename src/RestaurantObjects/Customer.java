@@ -47,7 +47,9 @@ public class Customer {
 	}
 
 	public void setCustomerBill(double customerBill) {
-		this.customerBill = customerBill;
+		this.customerBill += customerBill;
+		this.customerInfo();
+		System.out.println("Сметка: " + this.customerBill);
 	}
 
 	public JLabel getCustomerLabel() {

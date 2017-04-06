@@ -1,6 +1,8 @@
 package RestaurantObjects;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 public class Restaurant {
 	public static ArrayList<Table> tableList = new ArrayList<Table>();
 

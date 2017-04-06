@@ -383,15 +383,8 @@ public class MenuListTableEditable extends JPanel {
 	      }
 	}
 	public void setUpCategoryColumn(JTable table, TableColumn fourthColumn) {
-		JComboBox comboBox = new JComboBox();
-		comboBox.addItem("безалкохолни напитки");
-		comboBox.addItem("алкохолни напитки");
-		comboBox.addItem("супи");
-		comboBox.addItem("предястия");
-		comboBox.addItem("салати");
-		comboBox.addItem("основни ястия");
-		comboBox.addItem("десерти");
-		comboBox.addItem("други");
+		new Menu();
+		JComboBox<String> comboBox = new JComboBox(Menu.categoryList.toArray());
 		fourthColumn.setCellEditor(new DefaultCellEditor(comboBox));
 
 		DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
