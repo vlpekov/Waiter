@@ -5,6 +5,8 @@ import RestaurantObjects.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.MenuItem;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -15,8 +17,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuListTable extends JPanel {
-
-//	static ArrayList<RestaurantObjects.MenuItem> menuFromJTable = new ArrayList<RestaurantObjects.MenuItem>();
+	int currentRow;
+	private final int firstColumn = 0;
+	private final int secondColumn = 1;
+	private final int thirdColumn = 2;
+	private final int fourthColumn = 3;
+	// static ArrayList<RestaurantObjects.MenuItem> menuFromJTable = new
+	// ArrayList<RestaurantObjects.MenuItem>();
 
 	public MenuListTable() {
 
@@ -26,20 +33,20 @@ public class MenuListTable extends JPanel {
 		DefaultTableModel tableModel = new DefaultTableModel(header, 0);
 
 		JTable table = new JTable(tableModel);
-		table.getColumn("Име").setMinWidth(400);
-		table.getColumn("Цена").setMinWidth(60);
-		table.getColumn("Цена").setMaxWidth(60);
-		table.getColumn("Количество").setMinWidth(100);
-		table.getColumn("Количество").setMaxWidth(100);
-		table.getColumn("Количество").setResizable(false);
-		table.getColumn("Цена").setResizable(false);
-		table.setPreferredScrollableViewportSize(new Dimension(770, 330));
-		table.setFillsViewportHeight(true);
-
-		JScrollPane tableScroll = new JScrollPane(table);
-		tableScroll.setVisible(true);
-		add(tableScroll);
-
+		// table.getColumn("Име").setMinWidth(400);
+		// table.getColumn("Цена").setMinWidth(60);
+		// table.getColumn("Цена").setMaxWidth(60);
+		// table.getColumn("Количество").setMinWidth(100);
+		// table.getColumn("Количество").setMaxWidth(100);
+		// table.getColumn("Количество").setResizable(false);
+		// table.getColumn("Цена").setResizable(false);
+		// table.setPreferredScrollableViewportSize(new Dimension(770, 330));
+		// table.setFillsViewportHeight(true);
+		//
+		// JScrollPane tableScroll = new JScrollPane(table);
+		// tableScroll.setVisible(true);
+		// add(tableScroll);
+		setTableProperties(table);
 		new Menu();
 
 		for (int i = 0; i < Menu.getMenuList().size(); i++) {
@@ -55,8 +62,8 @@ public class MenuListTable extends JPanel {
 		}
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setDefaultEditor(Object.class, null);
-//		printTable(table);
-//		printArrayList(menuFromJTable);
+		// printTable(table);
+		// printArrayList(menuFromJTable);
 	}
 
 	public static void main(String[] args) {
@@ -89,34 +96,39 @@ public class MenuListTable extends JPanel {
 
 	}
 
-//	public static void printTable(JTable table) {
-//		
-//		String name;
-//		String quantity;
-//		String category;
-//		double price;
-//
-//		int column = 0;
-//		for (int row = 0; row < table.getRowCount(); row++) {
-//			for (int col = 0; col < table.getColumnCount(); col++) {
-//				System.out.print(table.getValueAt(row, col));
-//
-//			}
-//			name = (String) table.getValueAt(row, column);
-//			price = (double) table.getValueAt(row, 1);
-//			quantity = (String) table.getValueAt(row, 2);
-//			category = (String) table.getValueAt(row, 3);
-//			// new RestaurantObjects.MenuItem(table.getValueAt(row, 0),
-//			// table.getValueAt(row, 1), table.getValueAt(row, 2),
-//			// table.getValueAt(row, 3)
-//			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
-//			System.out.println();
-//		}
-//	}
-//	
-//	public static void printArrayList (ArrayList<RestaurantObjects.MenuItem> menuFromJTablet) {
-//		for (RestaurantObjects.MenuItem item : menuFromJTablet) {
-//			item.printItem();
-//		}
-//	}
+	private void menuTableMouseEvent(JTable table) {
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				currentRow = table.getSelectedRow();
+				if (e.getClickCount() == 2) {
+					getDataFromCurrentRow(table, currentRow);
+				}
+			}
+		});
+	}
+
+	public void setTableProperties(JTable table) {
+		table.getColumn("Име").setMinWidth(400);
+		table.getColumn("Цена").setMinWidth(60);
+		table.getColumn("Цена").setMaxWidth(60);
+		table.getColumn("Количество").setMinWidth(100);
+		table.getColumn("Количество").setMaxWidth(100);
+		table.getColumn("Количество").setResizable(false);
+		table.getColumn("Цена").setResizable(false);
+		table.setPreferredScrollableViewportSize(new Dimension(770, 330));
+		table.setFillsViewportHeight(true);
+
+		JScrollPane tableScroll = new JScrollPane(table);
+		tableScroll.setVisible(true);
+		add(tableScroll);
+
+		menuTableMouseEvent(table);
+	}
+
+	private void getDataFromCurrentRow(JTable table, int currentRow) {
+		System.out.println(table.getValueAt(currentRow, firstColumn));
+		System.out.println(table.getValueAt(currentRow, secondColumn));
+	}
 }

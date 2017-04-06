@@ -33,7 +33,10 @@ public class MenuListTableEditable extends JPanel {
 	private static final String LINE_BREAK = "\n";
 	private static final String CELL_BREAK = "\t";
 	private static final Clipboard CLIPBOARD = Toolkit.getDefaultToolkit().getSystemClipboard();
-
+	private final int firstColumn = 0;
+	private final int secondColumn = 1;
+	private final int thirdColumn = 2;
+	private final int fourthColumn = 3;
 	public MenuListTableEditable() {
 
 		String[] header = { "Име", "Цена", "Количество", "Категория" };
@@ -299,17 +302,18 @@ public class MenuListTableEditable extends JPanel {
 		String quantity;
 		String category;
 		double price;
+
+		
 		menuFromJTable.clear();
-		int column = 0;
 		for (int row = 0; row < table.getRowCount(); row++) {
-			if (table.getValueAt(row, column) == null || table.getValueAt(row, column + 1) == null
-					|| table.getValueAt(row, column + 2) == null || table.getValueAt(row, column + 3) == null) {
+			if (table.getValueAt(row, firstColumn) == null || table.getValueAt(row, secondColumn) == null
+					|| table.getValueAt(row, thirdColumn) == null || table.getValueAt(row, fourthColumn) == null) {
 				continue;
 			}
 
-			Object getPrice = table.getValueAt(row, column + 1);
+			Object getPrice = table.getValueAt(row, secondColumn);
 			if (getPrice instanceof Double) {
-				price = (double) table.getValueAt(row, column + 1);
+				price = (double) table.getValueAt(row, secondColumn);
 			} else {
 				String tempString = getPrice.toString().replace(',', '.');
 				if (isDouble(tempString)) {
@@ -319,9 +323,9 @@ public class MenuListTableEditable extends JPanel {
 				}
 
 			}
-			name = (String) table.getValueAt(row, column);
-			quantity = (String) table.getValueAt(row, column + 2);
-			category = (String) table.getValueAt(row, column + 3);
+			name = (String) table.getValueAt(row, firstColumn);
+			quantity = (String) table.getValueAt(row, thirdColumn);
+			category = (String) table.getValueAt(row, fourthColumn);
 			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
 		}
 		
