@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class MenuListTable extends JPanel {
+public class MenuListOrder extends JPanel {
 	int currentRow;
 	private final int firstColumn = 0;
 	private final int secondColumn = 1;
@@ -29,7 +29,7 @@ public class MenuListTable extends JPanel {
 	// static ArrayList<RestaurantObjects.MenuItem> menuFromJTable = new
 	// ArrayList<RestaurantObjects.MenuItem>();
 
-	public MenuListTable() {
+	public MenuListOrder() {
 
 		String[] header = { "Име", "Цена", "Количество", "Категория" };
 		// String[][] data = new String[1000][];
@@ -79,9 +79,11 @@ public class MenuListTable extends JPanel {
 	public void runMenuTable() {
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
-		MenuListTable menuTable = new MenuListTable();
+		MenuListOrder menuTable = new MenuListOrder();
 		tableFrame.setTitle("Меню");
+		// tableFrame.setSize(800, 400);
 		tableFrame.setVisible(true);
+		// tableFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tableFrame.add(menuTable);
 	}
 
@@ -89,12 +91,26 @@ public class MenuListTable extends JPanel {
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
 
-		MenuListTable menuTable = new MenuListTable();
+		MenuListOrder menuTable = new MenuListOrder();
 		tableFrame.setTitle("Меню");
 		// tableFrame.setSize(800, 400);
 		tableFrame.setVisible(true);
 		tableFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		tableFrame.add(menuTable);
+
+	}
+
+	private void menuTableMouseEvent(JTable table) {
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				currentRow = table.getSelectedRow();
+				if (e.getClickCount() == 2) {
+					getDataFromCurrentRow(table, currentRow);
+				}
+			}
+		});
 	}
 
 	public void setTableProperties(JTable table) {
@@ -111,6 +127,14 @@ public class MenuListTable extends JPanel {
 		JScrollPane tableScroll = new JScrollPane(table);
 		tableScroll.setVisible(true);
 		add(tableScroll);
+
+		menuTableMouseEvent(table);
+
+	}
+
+	private void getDataFromCurrentRow(JTable table, int currentRow) {
+		System.out.println(table.getValueAt(currentRow, firstColumn));
+		System.out.println(table.getValueAt(currentRow, secondColumn));
 	}
 
 }
