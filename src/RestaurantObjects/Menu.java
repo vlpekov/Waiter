@@ -12,6 +12,7 @@ import GUI.*;
 
 public class Menu {
 	public static ArrayList<MenuItem> menuList;
+	public static ArrayList<String> categoryList;
 
 	public Menu() {
 		this.menuList = new ArrayList<MenuItem>();
@@ -21,6 +22,19 @@ public class Menu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		setCategoryList();
+	}
+
+	private void setCategoryList() {
+		this.categoryList = new ArrayList<String>();
+		categoryList.add("безалкохолни напитки");
+		categoryList.add("алкохолни напитки");
+		categoryList.add("супи");
+		categoryList.add("предястия");
+		categoryList.add("салати");
+		categoryList.add("основни ястия");
+		categoryList.add("десерти");
+		categoryList.add("други");
 	}
 
 	public static ArrayList<MenuItem> getMenuList() {

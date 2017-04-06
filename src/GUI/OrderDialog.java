@@ -12,13 +12,18 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -29,6 +34,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import RestaurantObjects.Menu;
+import RestaurantObjects.MenuItem;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
@@ -62,59 +68,90 @@ public class OrderDialog {
 	public OrderDialog() {
 		initialize();
 	}
-	
+
 	public static void run() {
-		
+
 	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Индивидуална поръчка");
 		frame.setBounds(100, 100, 481, 401);
-//		frame.setDefaultCloseOperation(JFrame.ABORT);
+		// frame.setDefaultCloseOperation(JFrame.ABORT);
 		frame.getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 465, 93);
 		frame.getContentPane().add(panel);
 
-		JButton orderButton = new JButton("Поръчай");
-		orderButton.setBounds(235, 235, 105, 23);
-		orderButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		panel.setLayout(null);
-		
-
-		JLabel lblNewLabel = new JLabel("Поръчка на клиент 1 от маса 2");
+		String currentCustomer = "";
+		JLabel lblNewLabel = new JLabel(currentCustomer);
 		lblNewLabel.setBounds(40, 11, 348, 14);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(lblNewLabel);
 
-		JComboBox categoryComboBox = new JComboBox();
-		categoryComboBox.setBounds(10, 36, 290, 20);
+		JComboBox<String> itemComboBox = new JComboBox<String>();
+		itemComboBox.setBounds(10, 66, 290, 20);
+		itemComboBox.setToolTipText("Изберете категория");
+
+		int categoryNumber = getCategoriesNumber();
+		ComboBoxModel[] models = new ComboBoxModel[categoryNumber];
+		for (int i = 0; i < categoryNumber; i++) {
+			models[i] = new DefaultComboBoxModel(getStringArray(getCategory(i)).toArray());
+		}
+
+		panel.add(itemComboBox);
+		new Menu();
+		JComboBox<String> categoryComboBox = new JComboBox(Menu.categoryList.toArray());
+		categoryComboBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				int i = categoryComboBox.getSelectedIndex();
+				itemComboBox.setModel(models[i]);
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				int i = categoryComboBox.getSelectedIndex();
+				itemComboBox.setModel(models[i]);
+			}
+		});
+		categoryComboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				int i = categoryComboBox.getSelectedIndex();
+				itemComboBox.setModel(models[i]);
+			}
+		});
+		categoryComboBox.setBounds(10, 37, 290, 20);
 		categoryComboBox.setToolTipText("Изберете категория");
 		panel.add(categoryComboBox);
 
+		itemComboBox.setModel(models[4]);
 		JButton ordetButton = new JButton("Добави");
 		ordetButton.setBounds(310, 65, 145, 23);
 		panel.add(ordetButton);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(10, 66, 290, 20);
-		comboBox.setToolTipText("Изберете категория");
-		panel.add(comboBox);
+		panel.setLayout(null);
+
+		JButton orderButton = new JButton("Поръчай");
+		orderButton.setBounds(235, 235, 105, 23);
+		orderButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frame.dispose();
+			}
+		});
 
 		JButton cancelButton = new JButton("Отмени");
 		cancelButton.setBounds(350, 235, 105, 23);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 			}
 		});
-		
 
 		JButton button_2 = new JButton("Избери от меню");
 		button_2.setBounds(310, 36, 145, 23);
@@ -123,7 +160,7 @@ public class OrderDialog {
 			}
 		});
 		panel.add(button_2);
-		
+
 		JPanel panelBottom = new JPanel();
 		panelBottom.setBounds(0, 93, 465, 269);
 		frame.getContentPane().add(panelBottom);
@@ -135,38 +172,98 @@ public class OrderDialog {
 		panelBottom.add(menuList);
 		FlowLayout flowLayout = (FlowLayout) menuList.getLayout();
 		flowLayout.setAlignOnBaseline(true);
-//		menuList.setMaximumSize(new Dimension(500, 300));
 
-//		table = new JTable();
-//		DefaultTableModel tableModel = new DefaultTableModel(new String[] { "New column", "New column", "New column" }, 0);
-//		table.setModel(tableModel);
-//		table.setBounds(10, 102, 445, 191);
-//		panel.add(new JScrollPane(table));
-//		fillTable(table, tableModel);
-//		panel.add(table);
+	}
+
+	// private void addItemsToCategoryComboBox(JComboBox categoryComboBox,
+	// JComboBox itemComboBox) {
+	// String category = categoryComboBox.getSelectedItem().toString();
+	// for (String item : Menu.categoryList) {
+	// if (item.equals(category))
+	// itemComboBox.addItem(item);
+	// }
+	// @Override
+	// public void itemStateChanged(ItemEvent e) {
+	// if(e.getStateChange() == ItemEvent.SELECTED) {
+	// String newCategory = categoryComboBox.getSelectedItem().toString();
+	// for (String item : Menu.categoryList) {
+	// if (item.equals(newCategory)) {
+	// itemComboBox.addItem(item);
+	// }
+	// }
+	// }
+	// });
+	//
+	// }
+
+	private String getCategory(int i) {
+		new Menu();
+		return Menu.categoryList.get(i);
+	}
+
+	private int getCategoriesNumber() {
+		new Menu();
+		int categoryNumber = 0;
+		for (String category : Menu.categoryList) {
+			categoryNumber++;
+		}
+		return categoryNumber;
+	}
+
+	private ArrayList<String> getStringArray(String category) {
+		ArrayList<String> items = new ArrayList<String>();
+		for (MenuItem item : Menu.menuList) {
+			if (item.getCategory().equals(category)) {
+				items.add(item.getName());
+				System.out.println(item.getName());
+			}
+
+		}
+		return items;
+
+	}
+
+	private void addItemsComboBox(JComboBox<String> categoryComboBox, JComboBox<String> itemComboBox) {
+		itemComboBox.removeAll();
+		String category = categoryComboBox.getSelectedItem().toString();
+		System.out.println(category);
+
+		for (MenuItem item : Menu.menuList) {
+			if (item.getCategory().equals(category)) {
+				itemComboBox.addItem(item.getName());
+				System.out.println(item.getName());
+			}
+		}
+	}
+
+	private void addItemsToCategoryComboBox(JComboBox<String> itemsComboBox) {
+		new Menu();
+		for (String category : Menu.categoryList) {
+			itemsComboBox.addItem(category);
+		}
 
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
 	}
 
-	private void setTableProperties(JTable tableOrder) {
-		tableOrder.setBounds(38, 120, 397, 191);
-		tableOrder.getColumn("Име").setMinWidth(400);
-		tableOrder.getColumn("Цена").setMinWidth(60);
-		tableOrder.getColumn("Цена").setMaxWidth(60);
-		tableOrder.getColumn("Количество").setMinWidth(100);
-		tableOrder.getColumn("Количество").setMaxWidth(100);
-		tableOrder.getColumn("Количество").setResizable(false);
-		tableOrder.getColumn("Цена").setResizable(false);
-		tableOrder.setPreferredScrollableViewportSize(new Dimension(770, 330));
-		tableOrder.setFillsViewportHeight(true);
-		JScrollPane tableScroll = new JScrollPane(tableOrder);
-		tableScroll.setVisible(true);
-		// table.add(tableScroll);
-		tableOrder.getTableHeader().setReorderingAllowed(false);
-
-	}
+	// private void setTableProperties(JTable tableOrder) {
+	// tableOrder.setBounds(38, 120, 397, 191);
+	// tableOrder.getColumn("Име").setMinWidth(400);
+	// tableOrder.getColumn("Цена").setMinWidth(60);
+	// tableOrder.getColumn("Цена").setMaxWidth(60);
+	// tableOrder.getColumn("Количество").setMinWidth(100);
+	// tableOrder.getColumn("Количество").setMaxWidth(100);
+	// tableOrder.getColumn("Количество").setResizable(false);
+	// tableOrder.getColumn("Цена").setResizable(false);
+	// tableOrder.setPreferredScrollableViewportSize(new Dimension(770, 330));
+	// tableOrder.setFillsViewportHeight(true);
+	// JScrollPane tableScroll = new JScrollPane(tableOrder);
+	// tableScroll.setVisible(true);
+	// // table.add(tableScroll);
+	// tableOrder.getTableHeader().setReorderingAllowed(false);
+	//
+	// }
 
 	private void fillTable(JTable table, DefaultTableModel tableModel) {
 		new Menu();
@@ -180,27 +277,26 @@ public class OrderDialog {
 		}
 	}
 
-	private void setPopupMenu(JTable tableOrder, DefaultTableModel tableModel) {
+	private void setPopupMenu(JTable table, DefaultTableModel tableModel) {
 		JPopupMenu popupMenu = new JPopupMenu();
-		addPopup(tableOrder, popupMenu);
+		addPopup(table, popupMenu);
 
 		JMenuItem menuRemove = new JMenuItem("Премахни");
 		menuRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				int selectedRow = tableOrder.getSelectedRow();
+				int selectedRow = table.getSelectedRow();
 				tableModel.removeRow(selectedRow);
 			}
 		});
 		popupMenu.add(menuRemove);
 
-		tableOrder.addMouseListener(new MouseAdapter() {
+		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent event) {
-				// selects the row at which point the mouse is clicked
 				Point point = event.getPoint();
-				int currentRow = tableOrder.rowAtPoint(point);
-				tableOrder.setRowSelectionInterval(currentRow, currentRow);
+				int currentRow = table.rowAtPoint(point);
+				table.setRowSelectionInterval(currentRow, currentRow);
 			}
 		});
 	}
