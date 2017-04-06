@@ -2,10 +2,12 @@ package GUI;
 
 import java.awt.EventQueue;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,6 +28,7 @@ import RestaurantObjects.Table;
 
 import java.awt.Label;
 import java.awt.Cursor;
+import javax.swing.JTextPane;
 
 public class Interface {
 
@@ -117,6 +120,16 @@ public class Interface {
 		mntmEditMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
+				JDialog.setDefaultLookAndFeelDecorated(false);
+				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?", "Потвърдете",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			    if (response == JOptionPane.NO_OPTION) {
+			    
+			    } else if (response == JOptionPane.YES_OPTION) {
+			    	showEditMenuTable();
+			    } else if (response == JOptionPane.CLOSED_OPTION) {
+			     
+			    }
 				showEditMenuTable();
 			}
 		});
@@ -126,11 +139,21 @@ public class Interface {
 		mntmEditTables.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					Menu.restoreMenuFromBackup();
-				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
-				}
+				JDialog.setDefaultLookAndFeelDecorated(false);
+				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?", "Потвърдете",
+			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			    if (response == JOptionPane.NO_OPTION) {
+			    
+			    } else if (response == JOptionPane.YES_OPTION) {
+					try {
+						Menu.restoreMenuFromBackup();
+					} catch (FileNotFoundException e1) {
+						e1.printStackTrace();
+					}
+			    } else if (response == JOptionPane.CLOSED_OPTION) {
+			     
+			    }
+
 			}
 		});
 		mnEdit.add(mntmEditTables);
