@@ -163,6 +163,21 @@ public class OrderDialog {
 
 		itemComboBox.setModel(models[4]);
 		JButton addButton = new JButton("Добави");
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String itemName = (String) itemComboBox.getSelectedItem();
+				System.out.println(itemName);
+				addItemToOrderList(itemName);
+			}
+
+			private void addItemToOrderList(String itemName) {
+				MenuItem item = Menu.getMenuItem(itemName);
+				String name = item.getName();
+				double price = item.getPrice();
+				String quantity = item.getQuantity();
+				OrderTable.addNewRow(name, price, quantity);
+			}
+		});
 		addButton.setBounds(310, 65, 145, 23);
 		panel.add(addButton);
 
@@ -175,7 +190,8 @@ public class OrderDialog {
 				frame.dispose();
 				System.out.println("Поръчването от клиент " + customerObject.getCustomerNumber()
 						+ " приключи с текуща сметка от: " + customerObject.getCustomerBill());
-				System.out.printf("Обща сметка за маса %d: %.2f\n", tableObject.getTableNumber(), tableObject.getBill());
+				System.out.printf("Обща сметка за маса %d: %.2f\n", tableObject.getTableNumber(),
+						tableObject.getBill());
 			}
 		});
 
@@ -253,6 +269,10 @@ public class OrderDialog {
 	// });
 	//
 	// }
+
+	protected void addNewRowToOrderTable(Object[] data) {
+		tableModel.addRow(data);
+	}
 
 	private String getCategory(int i) {
 		new Menu();

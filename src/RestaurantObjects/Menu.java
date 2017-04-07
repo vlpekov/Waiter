@@ -26,7 +26,7 @@ public class Menu {
 	}
 
 	private void setCategoryList() {
-		this.categoryList = new ArrayList<String>();
+		categoryList = new ArrayList<String>();
 		categoryList.add("безалкохолни напитки");
 		categoryList.add("алкохолни напитки");
 		categoryList.add("супи");
@@ -37,6 +37,15 @@ public class Menu {
 		categoryList.add("други");
 	}
 
+	public static MenuItem getMenuItem (String itemName) {
+		for (MenuItem item : menuList) {
+			if (item.getName().equals(itemName)) {
+				return item;
+			}
+		}
+		return null;
+	}
+	
 	public static ArrayList<MenuItem> getMenuList() {
 		return menuList;
 	}
