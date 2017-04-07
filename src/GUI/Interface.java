@@ -234,7 +234,6 @@ public class Interface {
 		customerSet(customerTable2Ch3, popupMenuCustomer, topChair, customersTable2, 3, 2);
 		frame.getContentPane().add(customerTable2Ch3);
 
-
 		JLabel customerTable2Ch4 = new JLabel("");
 		customerTable2Ch4.setBounds(283, 105, 61, 61);
 		customerTable2Ch4.setIcon(new ImageIcon(Interface.class.getResource("/images/clientw7.png")));
@@ -579,7 +578,8 @@ public class Interface {
 			public void mousePressed(MouseEvent e) {
 				JDialog.setDefaultLookAndFeelDecorated(false);
 				if (currentTable.getBill() > 0) {
-					int response = JOptionPane.showConfirmDialog(null, "Желаете ли да приключите сметката?",
+					String bill = String.format("%1$,.2f", currentTable.getBill());
+					int response = JOptionPane.showConfirmDialog(null, "Сметката е : " + bill + " лв.\nЖелаете ли да приключите сметката?",
 							"Потвърдете", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if (response == JOptionPane.NO_OPTION) {
 
@@ -593,11 +593,6 @@ public class Interface {
 
 					}
 				}
-				currentTable.getTableBill();
-				removeCustomers(currentTable, allTablesCustomers);
-				currentTable.release();
-				currentTable.clearBill();
-				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
 			}
 		});
 		popupMenuTable.add(popupMenuPayBill);
@@ -718,18 +713,19 @@ public class Interface {
 		chair2T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair2T2);
 
-//		JLabel chair3T2 = new JLabel("");
-//		chair3T2.setBounds(360, 45, 41, 42);
-//		chairSet(chair1T2, customerTable2Ch1, 2, 3);
-//		chair3T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
-//		frame.getContentPane().add(chair3T2);
+		// JLabel chair3T2 = new JLabel("");
+		// chair3T2.setBounds(360, 45, 41, 42);
+		// chairSet(chair1T2, customerTable2Ch1, 2, 3);
+		// chair3T2.setIcon(new
+		// ImageIcon(Interface.class.getResource("/images/chairn.png")));
+		// frame.getContentPane().add(chair3T2);
 
 		JLabel chair3T2 = new JLabel("");
 		chair3T2.setBounds(360, 45, 42, 41);
 		chairSet(chair3T2, customerTable2Ch3, 2, 3);
 		chair3T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair3T2);
-		
+
 		JLabel chair4T2 = new JLabel("");
 		chair4T2.setBounds(283, 113, 42, 41);
 		chairSet(chair4T2, customerTable2Ch4, 2, 4);
@@ -1018,8 +1014,6 @@ public class Interface {
 		chairSet(chair3T9, customerTable9Ch3, 9, 3);
 		chair3T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T9);
-		
-
 
 	}
 
@@ -1299,6 +1293,9 @@ public class Interface {
 		}
 		if (isTableEmpty) {
 			currentTable.release();
+			if (currentReservedSign.isVisible()) {
+				currentTable.setReserved(true);
+			}
 			getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
 		}
 	}

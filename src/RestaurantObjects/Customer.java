@@ -59,6 +59,7 @@ public class Customer {
 
 	public void resetBill() {
 		this.customerBill = 0;
+		orderList.clear();
 	}
 	
 	public JLabel getCustomerLabel() {

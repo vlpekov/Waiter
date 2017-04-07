@@ -270,6 +270,6 @@ public class Table {
 		resetBill();;
 		for (Customer customer : customers) {
 			customer.resetBill();
-		}
+			}
 	}
 }
