@@ -16,8 +16,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultCellEditor;
@@ -30,15 +30,11 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-
 import RestaurantObjects.Menu;
+import RestaurantObjects.MenuItem;
 
 public class MenuListTableEditable extends JPanel {
 
@@ -60,25 +56,6 @@ public class MenuListTableEditable extends JPanel {
 
 		setTableProperties(table);
 		fillTable(table, tableModel);
-
-//		table.setAutoCreateRowSorter(true);
-//		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
-//		table.setRowSorter(sorter);
-//		List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-//		int columnIndexForCategory = 3;
-//		sortKeys.add(new RowSorter.SortKey(columnIndexForCategory, SortOrder.ASCENDING));
-//		int columnIndexForName = 0;
-//		sortKeys.add(new RowSorter.SortKey(columnIndexForName, SortOrder.ASCENDING));
-//		sorter.setSortKeys(sortKeys);
-//		sorter.setSortable(1, false);
-//		sorter.setSortable(2, false);
-//		sorter.setComparator(columnIndexForName, new Comparator<String>() {
-//			@Override
-//			public int compare(String name1, String name2) {
-//				return name1.compareTo(name2);
-//			}
-//		});
-//		sorter.sort();
 
 		setPopupMenu(table, tableModel);
 	}
@@ -111,26 +88,6 @@ public class MenuListTableEditable extends JPanel {
 		});
 
 	}
-
-	// public void windowClosing(WindowEvent e) {
-	//
-	// System.out.println("Trqbwaaa da se zapishe fajla");
-	// if (isEdited) {
-	//
-	// JDialog.setDefaultLookAndFeelDecorated(false);
-	// int response = JOptionPane.showConfirmDialog(null,
-	// "Направени са промени.\nЖелаете ли да запаметите?", "Менюто е
-	// редактирано",
-	// JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-	// if (response == JOptionPane.NO_OPTION) {
-	// tableFrame.dispose();
-	// } else if (response == JOptionPane.YES_OPTION) {
-	// saveTableToFile();
-	// } else if (response == JOptionPane.CLOSED_OPTION) {
-	// }
-	// }
-	// }
-	// });
 
 	public static void runMenuTableTest() {
 		JFrame tableFrame = new JFrame();
@@ -398,7 +355,11 @@ public class MenuListTableEditable extends JPanel {
 			category = (String) table.getValueAt(row, fourthColumn);
 			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
 		}
-
+		Collections.sort(menuFromJTable, new Comparator<MenuItem>() {
+		    public int compare(MenuItem item1, MenuItem item2) {
+		        return item1.getCategory().compareTo(item2.getCategory());
+		    }
+		});
 	}
 
 	private void printArrayList(ArrayList<RestaurantObjects.MenuItem> menuFromJTablet) {
@@ -454,4 +415,7 @@ public class MenuListTableEditable extends JPanel {
 		renderer.setToolTipText("Натисни за избор");
 		fourthColumn.setCellRenderer(renderer);
 	}
+
 }
+
+
