@@ -245,10 +245,9 @@ public class Interface {
 		});
 		currentBills.add(currentBillTable9);
 
-		setMenuViewMouseListeners(mnView, currentBillTable1, currentBillTable2, currentBillTable3,
-				currentBillTable4, currentBillTable5, currentBillTable6, currentBillTable7, currentBillTable8,
-				currentBillTable9);
-		
+		setMenuViewMouseListeners(mnView, currentBillTable1, currentBillTable2, currentBillTable3, currentBillTable4,
+				currentBillTable5, currentBillTable6, currentBillTable7, currentBillTable8, currentBillTable9);
+
 		setCurrentBillsPopupMenuMouseListeners(currentBills, currentBillTable1, currentBillTable2, currentBillTable3,
 				currentBillTable4, currentBillTable5, currentBillTable6, currentBillTable7, currentBillTable8,
 				currentBillTable9);
@@ -611,6 +610,34 @@ public class Interface {
 		customerTable9Ch3.setBounds(826, 495, 61, 61);
 		customerSet(customerTable9Ch3, popupMenuCustomer, leftChair, customersTable9, 3, 9);
 		frame.getContentPane().add(customerTable9Ch3);
+
+		for (int key : customersTable1.keySet()) {
+			customersTable1.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable2.keySet()) {
+			customersTable2.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable3.keySet()) {
+			customersTable3.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable4.keySet()) {
+			customersTable4.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable5.keySet()) {
+			customersTable5.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable6.keySet()) {
+			customersTable6.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable7.keySet()) {
+			customersTable7.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable8.keySet()) {
+			customersTable8.get(key).setToolTipText("Клиент " + key);
+		}
+		for (int key : customersTable9.keySet()) {
+			customersTable9.get(key).setToolTipText("Клиент " + key);
+		}
 
 		setTableInfoLables();
 
@@ -1117,64 +1144,65 @@ public class Interface {
 	private void setMenuViewMouseListeners(JMenu mnView, JMenuItem currentBillTable1, JMenuItem currentBillTable2,
 			JMenuItem currentBillTable3, JMenuItem currentBillTable4, JMenuItem currentBillTable5,
 			JMenuItem currentBillTable6, JMenuItem currentBillTable7, JMenuItem currentBillTable8,
-			JMenuItem currentBillTable9) {mnView.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					if (Restaurant.getTable(1).isAvailable()) {
-						currentBillTable1.setVisible(false);
-					} else {
-						currentBillTable1.setVisible(true);
-					}
-
-					if (Restaurant.getTable(2).isAvailable()) {
-						currentBillTable2.setVisible(false);
-					} else {
-						currentBillTable2.setVisible(true);
-					}
-
-					if (Restaurant.getTable(3).isAvailable()) {
-						currentBillTable3.setVisible(false);
-					} else {
-						currentBillTable3.setVisible(true);
-					}
-
-					if (Restaurant.getTable(4).isAvailable()) {
-						currentBillTable4.setVisible(false);
-					} else {
-						currentBillTable4.setVisible(true);
-					}
-
-					if (Restaurant.getTable(5).isAvailable()) {
-						currentBillTable5.setVisible(false);
-					} else {
-						currentBillTable5.setVisible(true);
-					}
-
-					if (Restaurant.getTable(6).isAvailable()) {
-						currentBillTable6.setVisible(false);
-					} else {
-						currentBillTable6.setVisible(true);
-					}
-
-					if (Restaurant.getTable(7).isAvailable()) {
-						currentBillTable7.setVisible(false);
-					} else {
-						currentBillTable7.setVisible(true);
-					}
-
-					if (Restaurant.getTable(8).isAvailable()) {
-						currentBillTable8.setVisible(false);
-					} else {
-						currentBillTable8.setVisible(true);
-					}
-
-					if (Restaurant.getTable(9).isAvailable()) {
-						currentBillTable9.setVisible(false);
-					} else {
-						currentBillTable9.setVisible(true);
-					}
+			JMenuItem currentBillTable9) {
+		mnView.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (Restaurant.getTable(1).isAvailable()) {
+					currentBillTable1.setVisible(false);
+				} else {
+					currentBillTable1.setVisible(true);
 				}
-			});
+
+				if (Restaurant.getTable(2).isAvailable()) {
+					currentBillTable2.setVisible(false);
+				} else {
+					currentBillTable2.setVisible(true);
+				}
+
+				if (Restaurant.getTable(3).isAvailable()) {
+					currentBillTable3.setVisible(false);
+				} else {
+					currentBillTable3.setVisible(true);
+				}
+
+				if (Restaurant.getTable(4).isAvailable()) {
+					currentBillTable4.setVisible(false);
+				} else {
+					currentBillTable4.setVisible(true);
+				}
+
+				if (Restaurant.getTable(5).isAvailable()) {
+					currentBillTable5.setVisible(false);
+				} else {
+					currentBillTable5.setVisible(true);
+				}
+
+				if (Restaurant.getTable(6).isAvailable()) {
+					currentBillTable6.setVisible(false);
+				} else {
+					currentBillTable6.setVisible(true);
+				}
+
+				if (Restaurant.getTable(7).isAvailable()) {
+					currentBillTable7.setVisible(false);
+				} else {
+					currentBillTable7.setVisible(true);
+				}
+
+				if (Restaurant.getTable(8).isAvailable()) {
+					currentBillTable8.setVisible(false);
+				} else {
+					currentBillTable8.setVisible(true);
+				}
+
+				if (Restaurant.getTable(9).isAvailable()) {
+					currentBillTable9.setVisible(false);
+				} else {
+					currentBillTable9.setVisible(true);
+				}
+			}
+		});
 	}
 
 	private void setCurrentBillsPopupMenuMouseListeners(JMenu currentBills, JMenuItem currentBillTable1,
