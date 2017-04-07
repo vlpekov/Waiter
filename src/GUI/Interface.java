@@ -26,17 +26,11 @@ import RestaurantObjects.Menu;
 import RestaurantObjects.Restaurant;
 import RestaurantObjects.Table;
 
-import java.awt.Label;
 import java.awt.Cursor;
-import javax.swing.JTextPane;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import javax.swing.JRadioButtonMenuItem;
 
 public class Interface {
 
 	private static JFrame frame;
-	private JFrame frameMenu;
 	private static Table currentTable;
 	private JLabel currentReservedSign;
 	private static JLabel currentCustomer;

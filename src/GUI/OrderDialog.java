@@ -35,7 +35,6 @@ import java.awt.FlowLayout;
 public class OrderDialog {
 
 	JFrame frame;
-	private JTable tableOrder;
 	private JTable table;
 	public static double currentBill;
 	private static Customer customerObject;
@@ -158,7 +157,7 @@ public class OrderDialog {
 		categoryComboBox.setToolTipText("Изберете категория");
 		panel.add(categoryComboBox);
 
-		itemComboBox.setModel(models[4]);
+		itemComboBox.setModel(models[0]);
 		JButton addButton = new JButton("Добави");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

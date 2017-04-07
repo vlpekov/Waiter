@@ -169,8 +169,9 @@ public class OrderTable extends JPanel {
 	public void saveToOrderList(Customer customerObject) {
 		for (int i = 0; i < table.getRowCount(); i++) {
 			String itemName = (String) table.getValueAt(i, 0);
+			String itemQuantity = (String) table.getValueAt(i, 2);
 			for (RestaurantObjects.MenuItem item : Menu.menuList) {
-				if (item.getName().equals(itemName)) {
+				if (item.getName().equals(itemName) && item.getQuantity().equals(itemQuantity)) {
 					customerObject.addToOrderList(item);
 				}
 			}
