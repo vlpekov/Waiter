@@ -4,17 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import java.awt.BorderLayout;
 import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Vector;
-
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,9 +20,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.Point;
-
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
@@ -39,10 +30,7 @@ import RestaurantObjects.MenuItem;
 import RestaurantObjects.Restaurant;
 import RestaurantObjects.Table;
 
-import javax.swing.JSeparator;
-import javax.swing.JTextPane;
 import java.awt.FlowLayout;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class OrderDialog {
 
@@ -276,27 +264,6 @@ public class OrderDialog {
 		panelBottom.add(orderListButton);
 	}
 
-	// private void addItemsToCategoryComboBox(JComboBox categoryComboBox,
-	// JComboBox itemComboBox) {
-	// String category = categoryComboBox.getSelectedItem().toString();
-	// for (String item : Menu.categoryList) {
-	// if (item.equals(category))
-	// itemComboBox.addItem(item);
-	// }
-	// @Override
-	// public void itemStateChanged(ItemEvent e) {
-	// if(e.getStateChange() == ItemEvent.SELECTED) {
-	// String newCategory = categoryComboBox.getSelectedItem().toString();
-	// for (String item : Menu.categoryList) {
-	// if (item.equals(newCategory)) {
-	// itemComboBox.addItem(item);
-	// }
-	// }
-	// }
-	// });
-	//
-	// }
-
 	private String getCategory(int i) {
 		new Menu();
 		return Menu.categoryList.get(i);
@@ -340,24 +307,6 @@ public class OrderDialog {
 
 	}
 
-	// private void setTableProperties(JTable tableOrder) {
-	// tableOrder.setBounds(38, 120, 397, 191);
-	// tableOrder.getColumn("Име").setMinWidth(400);
-	// tableOrder.getColumn("Цена").setMinWidth(60);
-	// tableOrder.getColumn("Цена").setMaxWidth(60);
-	// tableOrder.getColumn("Количество").setMinWidth(100);
-	// tableOrder.getColumn("Количество").setMaxWidth(100);
-	// tableOrder.getColumn("Количество").setResizable(false);
-	// tableOrder.getColumn("Цена").setResizable(false);
-	// tableOrder.setPreferredScrollableViewportSize(new Dimension(770, 330));
-	// tableOrder.setFillsViewportHeight(true);
-	// JScrollPane tableScroll = new JScrollPane(tableOrder);
-	// tableScroll.setVisible(true);
-	// // table.add(tableScroll);
-	// tableOrder.getTableHeader().setReorderingAllowed(false);
-	//
-	// }
-
 	private void tableModel(JTable table, DefaultTableModel tableModel) {
 		new Menu();
 		for (int i = 0; i < Menu.getMenuList().size(); i++) {
@@ -394,6 +343,6 @@ public class OrderDialog {
 		orderObjectInfo.setText(
 				"Поръчка на клиент " + customerObject.getCustomerNumber() + " от маса " + tableObject.getTableNumber());
 		currentBillLabel.setText(
-				"Текущи сметки - клиент: " + customerObject.getCustomerBill() + ", маса: " + tableObject.getBill());
+				"Текущи сметки - клиент: " + String.format("%1$,.2f", customerObject.getCustomerBill()) + " лв., маса: " + String.format("%1$,.2f", tableObject.getBill()) + " лв." );
 	}
 }

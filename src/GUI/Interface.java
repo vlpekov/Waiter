@@ -31,6 +31,7 @@ import java.awt.Cursor;
 import javax.swing.JTextPane;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JRadioButtonMenuItem;
 
 public class Interface {
 
@@ -156,6 +157,107 @@ public class Interface {
 			}
 		});
 		mnView.add(mntmShowMenu);
+
+		JMenu currentBills = new JMenu("Текущи сметки");
+		mnView.add(currentBills);
+
+		JMenuItem currentBillTable1 = new JMenuItem("Маса 1");
+		currentBillTable1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(1);
+				billsList.runMenuTable(1);
+			}
+		});
+		currentBills.add(currentBillTable1);
+
+		JMenuItem currentBillTable2 = new JMenuItem("Маса 2");
+		currentBillTable2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(2);
+				billsList.runMenuTable(2);
+			}
+		});
+		currentBills.add(currentBillTable2);
+
+		JMenuItem currentBillTable3 = new JMenuItem("Маса 3");
+		currentBillTable3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(3);
+				billsList.runMenuTable(3);
+			}
+		});
+		currentBills.add(currentBillTable3);
+
+		JMenuItem currentBillTable4 = new JMenuItem("Маса 4");
+		currentBillTable4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(4);
+				billsList.runMenuTable(4);
+			}
+		});
+		currentBills.add(currentBillTable4);
+
+		JMenuItem currentBillTable5 = new JMenuItem("Маса 5");
+		currentBillTable5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(5);
+				billsList.runMenuTable(5);
+			}
+		});
+		currentBills.add(currentBillTable5);
+
+		JMenuItem currentBillTable6 = new JMenuItem("Маса 6");
+		currentBillTable6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(6);
+				billsList.runMenuTable(6);
+			}
+		});
+		currentBills.add(currentBillTable6);
+
+		JMenuItem currentBillTable7 = new JMenuItem("Маса 7");
+		currentBillTable7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(7);
+				billsList.runMenuTable(7);
+			}
+		});
+		currentBills.add(currentBillTable7);
+
+		JMenuItem currentBillTable8 = new JMenuItem("Маса 8");
+		currentBillTable8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(8);
+				billsList.runMenuTable(8);
+			}
+		});
+		currentBills.add(currentBillTable8);
+
+		JMenuItem currentBillTable9 = new JMenuItem("Маса 9");
+		currentBillTable9.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				PaymentTable billsList = new PaymentTable(9);
+				billsList.runMenuTable(9);
+			}
+		});
+		currentBills.add(currentBillTable9);
+
+		setMenuViewMouseListeners(mnView, currentBillTable1, currentBillTable2, currentBillTable3,
+				currentBillTable4, currentBillTable5, currentBillTable6, currentBillTable7, currentBillTable8,
+				currentBillTable9);
+		
+		setCurrentBillsPopupMenuMouseListeners(currentBills, currentBillTable1, currentBillTable2, currentBillTable3,
+				currentBillTable4, currentBillTable5, currentBillTable6, currentBillTable7, currentBillTable8,
+				currentBillTable9);
 
 		// Customer pop-up menu
 		JPopupMenu popupMenuCustomer = new JPopupMenu();
@@ -579,8 +681,9 @@ public class Interface {
 				JDialog.setDefaultLookAndFeelDecorated(false);
 				if (currentTable.getBill() > 0) {
 					String bill = String.format("%1$,.2f", currentTable.getBill());
-					int response = JOptionPane.showConfirmDialog(null, "Сметката е : " + bill + " лв.\nЖелаете ли да приключите сметката?",
-							"Потвърдете", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					int response = JOptionPane.showConfirmDialog(null,
+							"Сметката е : " + bill + " лв.\nЖелаете ли да приключите сметката?", "Потвърдете",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 					if (response == JOptionPane.NO_OPTION) {
 
 					} else if (response == JOptionPane.YES_OPTION) {
@@ -1015,6 +1118,135 @@ public class Interface {
 		chair3T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T9);
 
+	}
+
+	private void setMenuViewMouseListeners(JMenu mnView, JMenuItem currentBillTable1, JMenuItem currentBillTable2,
+			JMenuItem currentBillTable3, JMenuItem currentBillTable4, JMenuItem currentBillTable5,
+			JMenuItem currentBillTable6, JMenuItem currentBillTable7, JMenuItem currentBillTable8,
+			JMenuItem currentBillTable9) {mnView.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (Restaurant.getTable(1).isAvailable()) {
+						currentBillTable1.setVisible(false);
+					} else {
+						currentBillTable1.setVisible(true);
+					}
+
+					if (Restaurant.getTable(2).isAvailable()) {
+						currentBillTable2.setVisible(false);
+					} else {
+						currentBillTable2.setVisible(true);
+					}
+
+					if (Restaurant.getTable(3).isAvailable()) {
+						currentBillTable3.setVisible(false);
+					} else {
+						currentBillTable3.setVisible(true);
+					}
+
+					if (Restaurant.getTable(4).isAvailable()) {
+						currentBillTable4.setVisible(false);
+					} else {
+						currentBillTable4.setVisible(true);
+					}
+
+					if (Restaurant.getTable(5).isAvailable()) {
+						currentBillTable5.setVisible(false);
+					} else {
+						currentBillTable5.setVisible(true);
+					}
+
+					if (Restaurant.getTable(6).isAvailable()) {
+						currentBillTable6.setVisible(false);
+					} else {
+						currentBillTable6.setVisible(true);
+					}
+
+					if (Restaurant.getTable(7).isAvailable()) {
+						currentBillTable7.setVisible(false);
+					} else {
+						currentBillTable7.setVisible(true);
+					}
+
+					if (Restaurant.getTable(8).isAvailable()) {
+						currentBillTable8.setVisible(false);
+					} else {
+						currentBillTable8.setVisible(true);
+					}
+
+					if (Restaurant.getTable(9).isAvailable()) {
+						currentBillTable9.setVisible(false);
+					} else {
+						currentBillTable9.setVisible(true);
+					}
+				}
+			});
+	}
+
+	private void setCurrentBillsPopupMenuMouseListeners(JMenu currentBills, JMenuItem currentBillTable1,
+			JMenuItem currentBillTable2, JMenuItem currentBillTable3, JMenuItem currentBillTable4,
+			JMenuItem currentBillTable5, JMenuItem currentBillTable6, JMenuItem currentBillTable7,
+			JMenuItem currentBillTable8, JMenuItem currentBillTable9) {
+		currentBills.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+
+				if (Restaurant.getTable(1).isAvailable()) {
+					currentBillTable1.setVisible(false);
+				} else {
+					currentBillTable1.setVisible(true);
+				}
+
+				if (Restaurant.getTable(2).isAvailable()) {
+					currentBillTable2.setVisible(false);
+				} else {
+					currentBillTable2.setVisible(true);
+				}
+
+				if (Restaurant.getTable(3).isAvailable()) {
+					currentBillTable3.setVisible(false);
+				} else {
+					currentBillTable3.setVisible(true);
+				}
+
+				if (Restaurant.getTable(4).isAvailable()) {
+					currentBillTable4.setVisible(false);
+				} else {
+					currentBillTable4.setVisible(true);
+				}
+
+				if (Restaurant.getTable(5).isAvailable()) {
+					currentBillTable5.setVisible(false);
+				} else {
+					currentBillTable5.setVisible(true);
+				}
+
+				if (Restaurant.getTable(6).isAvailable()) {
+					currentBillTable6.setVisible(false);
+				} else {
+					currentBillTable6.setVisible(true);
+				}
+
+				if (Restaurant.getTable(7).isAvailable()) {
+					currentBillTable7.setVisible(false);
+				} else {
+					currentBillTable7.setVisible(true);
+				}
+
+				if (Restaurant.getTable(8).isAvailable()) {
+					currentBillTable8.setVisible(false);
+				} else {
+					currentBillTable8.setVisible(true);
+				}
+
+				if (Restaurant.getTable(9).isAvailable()) {
+					currentBillTable9.setVisible(false);
+				} else {
+					currentBillTable9.setVisible(true);
+				}
+
+			}
+		});
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
