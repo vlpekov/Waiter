@@ -3,12 +3,14 @@ package GUI;
 import RestaurantObjects.*;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.MenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
@@ -60,9 +62,46 @@ public class OrderTable extends JPanel {
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setDefaultEditor(Object.class, null);
 		
-
+		JPopupMenu popupMenuTable = new JPopupMenu();
+		JMenuItem mntmRemove = new JMenuItem("Премахни");
+		
+		mntmRemove.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				tableModel.removeRow(selectedRow);
+			}
+		});
+		
+		popupMenuTable.add(mntmRemove);
+		addPopup(table, popupMenuTable);
+		
 	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
 
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+	}
+	
 	public static void main(String[] args) {
 
 		runMenuTableTest();
@@ -76,6 +115,12 @@ public class OrderTable extends JPanel {
 	
 	public void deleteRow (int row) {
 		tableModel.removeRow(row);
+	}
+	
+	public void deleteAllRow () {
+		for (int row = 0; row<tableModel.getRowCount(); row++) {
+		tableModel.removeRow(row);
+		}
 	}
 	
 	public double sumItemPrices() {

@@ -190,7 +190,7 @@ public class MenuListTableEditable extends JPanel {
 		JPopupMenu popupMenu = new JPopupMenu();
 		addPopup(table, popupMenu);
 
-		JMenuItem mntmCut = new JMenuItem("Cut");
+		JMenuItem mntmCut = new JMenuItem("Изрежи");
 		mntmCut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -199,7 +199,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(mntmCut);
 
-		JMenuItem mntmCopy = new JMenuItem("Copy");
+		JMenuItem mntmCopy = new JMenuItem("Копирай");
 		mntmCopy.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -208,7 +208,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(mntmCopy);
 
-		JMenuItem mntmPaste = new JMenuItem("Paste");
+		JMenuItem mntmPaste = new JMenuItem("Постави");
 		mntmPaste.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -217,7 +217,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(mntmPaste);
 
-		JMenuItem mntmClear = new JMenuItem("Clear row");
+		JMenuItem mntmClear = new JMenuItem("Изчисти реда");
 		mntmClear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -228,7 +228,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(mntmClear);
 
-		JMenuItem mntmDuplicate = new JMenuItem("Duplicate row");
+		JMenuItem mntmDuplicate = new JMenuItem("Дублирай реда");
 		mntmDuplicate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -243,7 +243,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(mntmDuplicate);
 
-		JMenuItem menuInsert = new JMenuItem("Insert New Row");
+		JMenuItem menuInsert = new JMenuItem("Вмъкни нов ред");
 		menuInsert.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -253,7 +253,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(menuInsert);
 
-		JMenuItem menuAdd = new JMenuItem("Add New Row");
+		JMenuItem menuAdd = new JMenuItem("Добави нов ред");
 		menuAdd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -262,7 +262,7 @@ public class MenuListTableEditable extends JPanel {
 		});
 		popupMenu.add(menuAdd);
 
-		JMenuItem menuRemove = new JMenuItem("Delete Row");
+		JMenuItem menuRemove = new JMenuItem("Изтрий реда");
 		menuRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
