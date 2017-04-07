@@ -268,7 +268,8 @@ public class OrderDialog {
 		orderListButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuListTable list = new MenuListTable();
+				CustomerOrderList orderList = new CustomerOrderList(customerObject);
+				orderList.runMenuTable(customerObject);
 			}
 		});
 		orderListButton.setBounds(10, 235, 195, 23);
