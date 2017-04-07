@@ -29,6 +29,8 @@ import RestaurantObjects.Table;
 import java.awt.Label;
 import java.awt.Cursor;
 import javax.swing.JTextPane;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Interface {
 
@@ -117,17 +119,7 @@ public class Interface {
 		mntmEditMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				JDialog.setDefaultLookAndFeelDecorated(false);
-				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?",
-						"Потвърдете", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if (response == JOptionPane.NO_OPTION) {
-
-				} else if (response == JOptionPane.YES_OPTION) {
-					showEditMenuTable();
-				} else if (response == JOptionPane.CLOSED_OPTION) {
-
-				}
-				// showEditMenuTable();
+				showEditMenuTable();
 			}
 		});
 		mnEdit.add(mntmEditMenu);
@@ -241,6 +233,7 @@ public class Interface {
 		customerTable2Ch3.setIcon(new ImageIcon(Interface.class.getResource("/images/clientn8.png")));
 		customerSet(customerTable2Ch3, popupMenuCustomer, topChair, customersTable2, 3, 2);
 		frame.getContentPane().add(customerTable2Ch3);
+
 
 		JLabel customerTable2Ch4 = new JLabel("");
 		customerTable2Ch4.setBounds(283, 105, 61, 61);
@@ -536,7 +529,7 @@ public class Interface {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+
 				if (currentTable.getBill() > 0) {
 					JDialog.setDefaultLookAndFeelDecorated(false);
 					int response = JOptionPane.showConfirmDialog(null,
@@ -608,7 +601,7 @@ public class Interface {
 			}
 		});
 		popupMenuTable.add(popupMenuPayBill);
-		
+
 		// set tables
 		// table 1
 		JLabel table1 = new JLabel("");
@@ -725,12 +718,18 @@ public class Interface {
 		chair2T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chaire.png")));
 		frame.getContentPane().add(chair2T2);
 
+//		JLabel chair3T2 = new JLabel("");
+//		chair3T2.setBounds(360, 45, 41, 42);
+//		chairSet(chair1T2, customerTable2Ch1, 2, 3);
+//		chair3T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
+//		frame.getContentPane().add(chair3T2);
+
 		JLabel chair3T2 = new JLabel("");
-		chair3T2.setBounds(360, 45, 41, 42);
-		chairSet(chair1T2, customerTable2Ch1, 2, 3);
+		chair3T2.setBounds(360, 45, 42, 41);
+		chairSet(chair3T2, customerTable2Ch3, 2, 3);
 		chair3T2.setIcon(new ImageIcon(Interface.class.getResource("/images/chairn.png")));
 		frame.getContentPane().add(chair3T2);
-
+		
 		JLabel chair4T2 = new JLabel("");
 		chair4T2.setBounds(283, 113, 42, 41);
 		chairSet(chair4T2, customerTable2Ch4, 2, 4);
@@ -1019,6 +1018,8 @@ public class Interface {
 		chairSet(chair3T9, customerTable9Ch3, 9, 3);
 		chair3T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T9);
+		
+
 
 	}
 

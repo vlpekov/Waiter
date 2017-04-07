@@ -36,35 +36,35 @@ public class OrderTable extends JPanel {
 
 	public OrderTable() {
 
-		String[] header = { "Име", "Цена", "Количество"};
+		String[] header = { "Име", "Цена", "Количество" };
 
 		tableModel = new DefaultTableModel(header, 0);
 		setSize(400, 200);
 		this.table = new JTable(tableModel);
 		table.setFillsViewportHeight(true);
 
-//		JScrollPane tableScroll = new JScrollPane(table);
-//		tableScroll.setVisible(true);
-//		add(tableScroll);
+		// JScrollPane tableScroll = new JScrollPane(table);
+		// tableScroll.setVisible(true);
+		// add(tableScroll);
 		setTableProperties(table);
 		new Menu();
 
-//		for (int i = 0; i < Menu.getMenuList().size(); i++) {
-//			String name = Menu.getMenuList().get(i).getName();
-//			double price = Menu.getMenuList().get(i).getPrice();
-//			String quantity = Menu.getMenuList().get(i).getQuantity();
-//
-//			Object[] data = { name, price, quantity };
-//
-//			tableModel.addRow(data);
-//
-//		}
+		// for (int i = 0; i < Menu.getMenuList().size(); i++) {
+		// String name = Menu.getMenuList().get(i).getName();
+		// double price = Menu.getMenuList().get(i).getPrice();
+		// String quantity = Menu.getMenuList().get(i).getQuantity();
+		//
+		// Object[] data = { name, price, quantity };
+		//
+		// tableModel.addRow(data);
+		//
+		// }
 		table.getTableHeader().setReorderingAllowed(false);
 		table.setDefaultEditor(Object.class, null);
-		
+
 		JPopupMenu popupMenuTable = new JPopupMenu();
 		JMenuItem mntmRemove = new JMenuItem("Премахни");
-		
+
 		mntmRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -72,11 +72,12 @@ public class OrderTable extends JPanel {
 				tableModel.removeRow(selectedRow);
 			}
 		});
-		
+
 		popupMenuTable.add(mntmRemove);
 		addPopup(table, popupMenuTable);
-		
+
 	}
+
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -101,50 +102,50 @@ public class OrderTable extends JPanel {
 			}
 		});
 	}
-	
+
 	public static void main(String[] args) {
 
 		runMenuTableTest();
 
 	}
 
-	public static void addNewRow (String name, double price, String quantity) {
+	public static void addNewRow(String name, double price, String quantity) {
 		Object[] data = { name, price, quantity };
 		tableModel.addRow(data);
 	}
-	
-	public void deleteRow (int row) {
+
+	public void deleteRow(int row) {
 		tableModel.removeRow(row);
 	}
-	
-	public void deleteAllRow () {
-		for (int row = 0; row<tableModel.getRowCount(); row++) {
-		tableModel.removeRow(row);
+
+	public void deleteAllRow() {
+		for (int row = 0; row < tableModel.getRowCount(); row++) {
+			tableModel.removeRow(row);
 		}
 	}
-	
+
 	public double sumItemPrices() {
 		double sum = 0;
-		    for (int i = 0; i < table.getRowCount(); i++){
-		        double itemPrice = (double) table.getValueAt(i, 1);
-		        sum += itemPrice;
-		    }
-		    System.out.println("Направена е поръчка на стойност: " + sum);
-		    setSumCustomer(sum);
-		    setSumTable(sum);
-		    
-		    return sum;
+		for (int i = 0; i < table.getRowCount(); i++) {
+			double itemPrice = (double) table.getValueAt(i, 1);
+			sum += itemPrice;
+		}
+		System.out.println("Направена е поръчка на стойност: " + sum);
+		setSumCustomer(sum);
+		setSumTable(sum);
+
+		return sum;
 	}
-	
+
 	private void setSumTable(double sum) {
 		OrderDialog.getTableObject().addToBill(sum);
 	}
 
 	private void setSumCustomer(double sum) {
-		OrderDialog.getCustomerObject().addToBill(sum);;
-		
-	}
+		OrderDialog.getCustomerObject().addToBill(sum);
+		;
 
+	}
 
 	public static void runMenuTableTest() {
 	}
@@ -158,11 +159,22 @@ public class OrderTable extends JPanel {
 		table.getColumn("Количество").setMaxWidth(100);
 		table.getColumn("Количество").setResizable(false);
 		table.getColumn("Цена").setResizable(false);
-		table.setPreferredScrollableViewportSize(new Dimension(450,180));
-        table.setFillsViewportHeight(true);
+		table.setPreferredScrollableViewportSize(new Dimension(450, 180));
+		table.setFillsViewportHeight(true);
 		JScrollPane tableScroll = new JScrollPane(table);
 		tableScroll.setVisible(true);
 		add(tableScroll);
+	}
+
+	public void saveToOrderList(Customer customerObject) {
+		for (int i = 0; i < table.getRowCount(); i++) {
+			String itemName = (String) table.getValueAt(i, 0);
+			for (RestaurantObjects.MenuItem item : Menu.menuList) {
+				if (item.getName().equals(itemName)) {
+					customerObject.addToOrderList(item);
+				}
+			}
+		}
 	}
 
 }

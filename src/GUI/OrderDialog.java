@@ -55,7 +55,6 @@ public class OrderDialog {
 	public JLabel orderObjectInfo;
 	public JLabel currentBillLabel;
 	private JPanel panel;
-	
 
 	/**
 	 * Launch the application.
@@ -224,7 +223,7 @@ public class OrderDialog {
 		frame.getContentPane().add(panelBottom);
 		panelBottom.setLayout(null);
 		panelBottom.add(cancelButton);
-		
+
 		currentBillLabel = new JLabel();
 		currentBillLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		currentBillLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -255,6 +254,7 @@ public class OrderDialog {
 		orderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				menuList.sumItemPrices();
+				menuList.saveToOrderList(customerObject);
 				menuList.deleteAllRow();
 				menuList.deleteAllRow();
 				menuList.deleteAllRow();
@@ -263,6 +263,16 @@ public class OrderDialog {
 
 		});
 		panelBottom.add(orderButton);
+		
+		JButton orderListButton = new JButton("Списък поръчки");
+		orderListButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MenuListTable list = new MenuListTable();
+			}
+		});
+		orderListButton.setBounds(10, 235, 195, 23);
+		panelBottom.add(orderListButton);
 	}
 
 	// private void addItemsToCategoryComboBox(JComboBox categoryComboBox,
@@ -382,6 +392,7 @@ public class OrderDialog {
 	private void setLebelsText() {
 		orderObjectInfo.setText(
 				"Поръчка на клиент " + customerObject.getCustomerNumber() + " от маса " + tableObject.getTableNumber());
-		currentBillLabel.setText("Текущи сметки - клиент: " + customerObject.getCustomerBill() + ", маса: " + tableObject.getBill());
+		currentBillLabel.setText(
+				"Текущи сметки - клиент: " + customerObject.getCustomerBill() + ", маса: " + tableObject.getBill());
 	}
 }

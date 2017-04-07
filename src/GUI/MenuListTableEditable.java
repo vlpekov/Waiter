@@ -9,6 +9,8 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.util.Vector;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -41,6 +44,8 @@ public class MenuListTableEditable extends JPanel {
 	private final int secondColumn = 1;
 	private final int thirdColumn = 2;
 	private final int fourthColumn = 3;
+	private boolean isEdited;
+
 	public MenuListTableEditable() {
 
 		String[] header = { "Име", "Цена", "Количество", "Категория" };
@@ -65,7 +70,44 @@ public class MenuListTableEditable extends JPanel {
 		tableFrame.setTitle("Меню - редактиране");
 		tableFrame.setVisible(true);
 		tableFrame.add(menuTable);
+		tableFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+					JDialog.setDefaultLookAndFeelDecorated(false);
+					int response = JOptionPane.showConfirmDialog(null,
+							"Направени са промени.\nЖелаете ли да запаметите?", "Менюто е редактирано",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if (response == JOptionPane.NO_OPTION) {
+						tableFrame.dispose();
+					} else if (response == JOptionPane.YES_OPTION) {
+						saveTableToFile();
+					} else if (response == JOptionPane.CLOSED_OPTION) {
+					}
+			
+			}
+		});
+
 	}
+
+	// public void windowClosing(WindowEvent e) {
+	//
+	// System.out.println("Trqbwaaa da se zapishe fajla");
+	// if (isEdited) {
+	//
+	// JDialog.setDefaultLookAndFeelDecorated(false);
+	// int response = JOptionPane.showConfirmDialog(null,
+	// "Направени са промени.\nЖелаете ли да запаметите?", "Менюто е
+	// редактирано",
+	// JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	// if (response == JOptionPane.NO_OPTION) {
+	// tableFrame.dispose();
+	// } else if (response == JOptionPane.YES_OPTION) {
+	// saveTableToFile();
+	// } else if (response == JOptionPane.CLOSED_OPTION) {
+	// }
+	// }
+	// }
+	// });
 
 	public static void runMenuTableTest() {
 		JFrame tableFrame = new JFrame();
@@ -286,9 +328,10 @@ public class MenuListTableEditable extends JPanel {
 	private void isTableEdited(boolean isEdited, JTable table) {
 		System.out.println("Table is edited" + isEdited);
 		if (isEdited) {
+			this.isEdited = true;
 			saveJTableToArrayList(table);
 			printArrayList(menuFromJTable);
-			saveTableToFile();
+			// saveTableToFile();
 		}
 	}
 
@@ -296,7 +339,7 @@ public class MenuListTableEditable extends JPanel {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				isTableEdited(!table.isEditing(), table);
+				isTableEdited(true, table);
 
 			}
 		});
@@ -308,7 +351,6 @@ public class MenuListTableEditable extends JPanel {
 		String category;
 		double price;
 
-		
 		menuFromJTable.clear();
 		for (int row = 0; row < table.getRowCount(); row++) {
 			if (table.getValueAt(row, firstColumn) == null || table.getValueAt(row, secondColumn) == null
@@ -333,7 +375,7 @@ public class MenuListTableEditable extends JPanel {
 			category = (String) table.getValueAt(row, fourthColumn);
 			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
 		}
-		
+
 	}
 
 	private void printArrayList(ArrayList<RestaurantObjects.MenuItem> menuFromJTablet) {
@@ -369,19 +411,17 @@ public class MenuListTableEditable extends JPanel {
 	}
 
 	private void createFile() {
-		try
-	      {
-	         FileOutputStream fileOut = new FileOutputStream("restaurantMenu.sav");
-	         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	         out.writeObject(menuFromJTable);
-	         out.close();
-	         fileOut.close();
-	      }
-	      catch(IOException i)
-	      {
-	          i.printStackTrace();
-	      }
+		try {
+			FileOutputStream fileOut = new FileOutputStream("restaurantMenu.sav");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(menuFromJTable);
+			out.close();
+			fileOut.close();
+		} catch (IOException i) {
+			i.printStackTrace();
+		}
 	}
+
 	public void setUpCategoryColumn(JTable table, TableColumn fourthColumn) {
 		new Menu();
 		JComboBox<String> comboBox = new JComboBox(Menu.categoryList.toArray());

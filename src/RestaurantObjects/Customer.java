@@ -10,13 +10,14 @@ public class Customer {
 	private JLabel customerLabel;
 	private Table onTable;
 	private int tableNumber;
-	public static ArrayList<MenuItem> orderList;
+	public ArrayList<MenuItem> orderList;
 
 	public Customer(int customerNumber, int tableNumber) {
 		this.customerNumber = customerNumber;
 		this.tableNumber = tableNumber;
 		this.onTable = Restaurant.getTable(tableNumber);
 		this.isActive = false;
+		this.orderList = new ArrayList<MenuItem>();
 	}
 
 	public int getCustomerNumber() {
@@ -91,5 +92,9 @@ public class Customer {
 
 	private double getBill() {
 		return customerBill;
+	}
+	
+	public void addToOrderList (MenuItem item) {
+		orderList.add(item);
 	}
 }
