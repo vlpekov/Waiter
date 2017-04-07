@@ -1,4 +1,6 @@
 package RestaurantObjects;
+import java.util.ArrayList;
+
 import javax.swing.JLabel;
 
 public class Customer {
@@ -8,6 +10,7 @@ public class Customer {
 	private JLabel customerLabel;
 	private Table onTable;
 	private int tableNumber;
+	public static ArrayList<MenuItem> orderList;
 
 	public Customer(int customerNumber, int tableNumber) {
 		this.customerNumber = customerNumber;
@@ -40,19 +43,23 @@ public class Customer {
 	public void deactivateCustomer() {
 		System.out.println("Клиент " + this.customerNumber + " не е акривен.");
 		setActive(false);
-		setCustomerBill(0);
+		addToBill(0);
 	}
 
 	public double getCustomerBill() {
 		return customerBill;
 	}
 
-	public void setCustomerBill(double customerBill) {
+	public void addToBill(double customerBill) {
 		this.customerBill += customerBill;
 		this.customerInfo();
 		System.out.println("Сметка: " + this.customerBill);
 	}
 
+	public void resetBill() {
+		this.customerBill = 0;
+	}
+	
 	public JLabel getCustomerLabel() {
 		return customerLabel;
 	}

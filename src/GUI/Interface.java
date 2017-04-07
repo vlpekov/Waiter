@@ -581,8 +581,6 @@ public class Interface {
 		JMenuItem getBill = new JMenuItem("Приключване на сметката");
 		getBill.setVisible(false);
 		popupMenuPayBill = getBill;
-		
-		
 		popupMenuPayBill.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

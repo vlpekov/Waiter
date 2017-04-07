@@ -18,7 +18,6 @@ public class Table {
 	private ArrayList<Chair> chairs = new ArrayList<Chair>();
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
 
-
 	public Table(int tableNumber, int placesNumber) {
 		this.tableNumber = tableNumber;
 		this.placesNumber = placesNumber;
@@ -92,17 +91,13 @@ public class Table {
 		return bill;
 	}
 
-	public void setBill(double bill) {
-		this.bill = bill;
+	public void addToBill(double bill) {
+		this.bill += bill;
 	}
-	// public void printTableList() {
-	// System.out.println("Table list:");
-	// for (Table table : tableList) {
-	// System.out.printf("Table number: %d, Number of chairs: %d, Available:
-	// %b\n", table.getTableNumber(),
-	// table.getPlacesNumber(), table.isAvailable());
-	// }
-	// }
+
+	public void resetBill() {
+		this.bill = 0;
+	}
 
 	public void occupyTable(int tableNumber) {
 		for (Table table : Restaurant.tableList) {
@@ -137,7 +132,7 @@ public class Table {
 
 	private void isBillPaid() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void bookTable(int tableNumber) {
@@ -255,11 +250,12 @@ public class Table {
 		return tableInfo;
 	}
 
-	public double getTableBill () {
-		double bill=0;
+	public double getTableBill() {
+		double bill = 0;
 		for (Customer customer : customers) {
 			bill += customer.getCustomerBill();
-			System.out.println("Сметката на клиент" + customer.getCustomerNumber() + " е " + customer.getCustomerBill());
+			System.out
+					.println("Сметката на клиент" + customer.getCustomerNumber() + " е " + customer.getCustomerBill());
 		}
 		System.out.println("Сметката на маса " + tableNumber + " е: " + bill);
 		System.out.println("Сметката на маса " + tableNumber + " е: " + getBill());
@@ -269,11 +265,11 @@ public class Table {
 	public void billInfo() {
 		System.out.println("Сметка: " + getBill());
 	}
-	
+
 	public void clearBill() {
-		setBill(0);
+		resetBill();;
 		for (Customer customer : customers) {
-			customer.setCustomerBill(0);
+			customer.resetBill();
 		}
 	}
 }

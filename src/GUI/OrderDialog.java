@@ -42,6 +42,7 @@ import RestaurantObjects.Table;
 import javax.swing.JSeparator;
 import javax.swing.JTextPane;
 import java.awt.FlowLayout;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class OrderDialog {
 
@@ -51,6 +52,10 @@ public class OrderDialog {
 	public static double currentBill;
 	private static Customer customerObject;
 	private static Table tableObject;
+	public JLabel orderObjectInfo;
+	public JLabel currentBillLabel;
+	private JPanel panel;
+	
 
 	/**
 	 * Launch the application.
@@ -109,21 +114,26 @@ public class OrderDialog {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setLebelsText();
+			}
+		});
 		frame.setTitle("Индивидуална поръчка");
 		frame.setBounds(100, 100, 481, 401);
 		// frame.setDefaultCloseOperation(JFrame.ABORT);
 		frame.getContentPane().setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(0, 0, 465, 93);
 		frame.getContentPane().add(panel);
 
-		String currentCustomer = "";
-		JLabel lblNewLabel = new JLabel(currentCustomer);
-		lblNewLabel.setBounds(40, 11, 348, 14);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel.add(lblNewLabel);
+		orderObjectInfo = new JLabel();
+		orderObjectInfo.setBounds(10, 11, 445, 14);
+		orderObjectInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		orderObjectInfo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(orderObjectInfo);
 
 		JComboBox<String> itemComboBox = new JComboBox<String>();
 		itemComboBox.setBounds(10, 66, 290, 20);
@@ -195,9 +205,9 @@ public class OrderDialog {
 			}
 		});
 
-		JButton button_2 = new JButton("Избери от меню");
-		button_2.setBounds(310, 36, 145, 23);
-		button_2.addActionListener(new ActionListener() {
+		JButton menuChoice = new JButton("Избери от меню");
+		menuChoice.setBounds(310, 36, 145, 23);
+		menuChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				showMenuTable();
 			}
@@ -207,13 +217,19 @@ public class OrderDialog {
 				menuTable.runMenuTable();
 			}
 		});
-		panel.add(button_2);
+		panel.add(menuChoice);
 
 		JPanel panelBottom = new JPanel();
 		panelBottom.setBounds(0, 93, 465, 269);
 		frame.getContentPane().add(panelBottom);
 		panelBottom.setLayout(null);
 		panelBottom.add(cancelButton);
+		
+		currentBillLabel = new JLabel();
+		currentBillLabel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		currentBillLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		currentBillLabel.setBounds(10, 211, 445, 23);
+		panelBottom.add(currentBillLabel);
 
 		OrderTable menuList = new OrderTable();
 		menuList.setBounds(0, 0, 465, 224);
@@ -269,10 +285,6 @@ public class OrderDialog {
 	// });
 	//
 	// }
-
-	protected void addNewRowToOrderTable(Object[] data) {
-		tableModel.addRow(data);
-	}
 
 	private String getCategory(int i) {
 		new Menu();
@@ -365,5 +377,11 @@ public class OrderDialog {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
+	}
+
+	private void setLebelsText() {
+		orderObjectInfo.setText(
+				"Поръчка на клиент " + customerObject.getCustomerNumber() + " от маса " + tableObject.getTableNumber());
+		currentBillLabel.setText("Текущи сметки - клиент: " + customerObject.getCustomerBill() + ", маса: " + tableObject.getBill());
 	}
 }
