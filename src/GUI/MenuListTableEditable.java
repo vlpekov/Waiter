@@ -61,24 +61,24 @@ public class MenuListTableEditable extends JPanel {
 		setTableProperties(table);
 		fillTable(table, tableModel);
 
-		table.setAutoCreateRowSorter(true);
-		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
-		table.setRowSorter(sorter);
-		List<RowSorter.SortKey> sortKeys = new ArrayList<>();
-		int columnIndexForCategory = 3;
-		sortKeys.add(new RowSorter.SortKey(columnIndexForCategory, SortOrder.ASCENDING));
-		int columnIndexForName = 0;
-		sortKeys.add(new RowSorter.SortKey(columnIndexForName, SortOrder.ASCENDING));
-		sorter.setSortKeys(sortKeys);
-		sorter.setSortable(1, false);
-		sorter.setSortable(2, false);
-		sorter.setComparator(columnIndexForName, new Comparator<String>() {
-			@Override
-			public int compare(String name1, String name2) {
-				return name1.compareTo(name2);
-			}
-		});
-		sorter.sort();
+//		table.setAutoCreateRowSorter(true);
+//		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+//		table.setRowSorter(sorter);
+//		List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+//		int columnIndexForCategory = 3;
+//		sortKeys.add(new RowSorter.SortKey(columnIndexForCategory, SortOrder.ASCENDING));
+//		int columnIndexForName = 0;
+//		sortKeys.add(new RowSorter.SortKey(columnIndexForName, SortOrder.ASCENDING));
+//		sorter.setSortKeys(sortKeys);
+//		sorter.setSortable(1, false);
+//		sorter.setSortable(2, false);
+//		sorter.setComparator(columnIndexForName, new Comparator<String>() {
+//			@Override
+//			public int compare(String name1, String name2) {
+//				return name1.compareTo(name2);
+//			}
+//		});
+//		sorter.sort();
 
 		setPopupMenu(table, tableModel);
 	}
@@ -373,7 +373,7 @@ public class MenuListTableEditable extends JPanel {
 		String quantity;
 		String category;
 		double price;
-
+		System.out.println("Сортираната таблица има редове " + table.getRowCount());
 		menuFromJTable.clear();
 		for (int row = 0; row < table.getRowCount(); row++) {
 			if (table.getValueAt(row, firstColumn) == null || table.getValueAt(row, secondColumn) == null

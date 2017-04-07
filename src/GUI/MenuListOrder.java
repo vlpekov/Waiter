@@ -9,6 +9,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
@@ -16,9 +18,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class MenuListOrder extends JPanel {
 	int currentRow;
@@ -51,6 +57,26 @@ public class MenuListOrder extends JPanel {
 		// tableScroll.setVisible(true);
 		// add(tableScroll);
 		setTableProperties(table);
+		
+		table.setAutoCreateRowSorter(true);
+		TableRowSorter<TableModel> sorter = new TableRowSorter<>(table.getModel());
+		table.setRowSorter(sorter);
+		List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+		int columnIndexForCategory = 3;
+		sortKeys.add(new RowSorter.SortKey(columnIndexForCategory, SortOrder.ASCENDING));
+		int columnIndexForName = 0;
+		sortKeys.add(new RowSorter.SortKey(columnIndexForName, SortOrder.ASCENDING));
+		sorter.setSortKeys(sortKeys);
+		sorter.setSortable(1, false);
+		sorter.setSortable(2, false);
+		sorter.setComparator(columnIndexForName, new Comparator<String>() {
+			@Override
+			public int compare(String name1, String name2) {
+				return name1.compareTo(name2);
+			}
+		});
+		sorter.sort();
+		
 		new Menu();
 
 		for (int i = 0; i < Menu.getMenuList().size(); i++) {
