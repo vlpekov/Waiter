@@ -57,6 +57,14 @@ public class Customer {
 		System.out.println("Сметка: " + this.customerBill);
 	}
 
+	public void refreshBill() {
+		double sum = 0;
+		for (MenuItem item : orderList) {
+			sum += item.getPrice();
+		}
+		this.customerBill = sum;
+	}
+	
 	public void resetBill() {
 		this.customerBill = 0;
 		orderList.clear();

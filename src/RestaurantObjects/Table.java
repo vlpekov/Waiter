@@ -262,6 +262,10 @@ public class Table {
 		return bill;
 	}
 
+	public void refreshTableBill () {
+		bill = getTableBill();
+	}
+	
 	public void billInfo() {
 		System.out.println("Сметка: " + getBill());
 	}

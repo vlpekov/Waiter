@@ -2,34 +2,20 @@ package GUI;
 
 import RestaurantObjects.*;
 
-import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.MenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 public class CustomerOrderList extends JPanel {
-	int currentRow;
-	private final int firstColumn = 0;
-	private final int secondColumn = 1;
-	private final int thirdColumn = 2;
-	private final int fourthColumn = 3;
 	
-	// static ArrayList<RestaurantObjects.MenuItem> menuFromJTable = new
-	// ArrayList<RestaurantObjects.MenuItem>();
-
 	public CustomerOrderList(Customer currentCustomer) {
 
 		String[] header = { "Име", "Цена", "Количество", "Категория" };
@@ -59,6 +45,23 @@ public class CustomerOrderList extends JPanel {
 
 		}
 	
+		JPopupMenu popupMenuTable = new JPopupMenu();
+		JMenuItem mntmRemove = new JMenuItem("Премахни");
+
+		mntmRemove.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				int selectedRow = table.getSelectedRow();
+				double currentItemPrice = (double) table.getValueAt(selectedRow, 1);
+				tableModel.removeRow(selectedRow);
+				currentCustomer.orderList.remove(selectedRow);
+				currentCustomer.refreshBill();
+				currentCustomer.getCustomerTable().refreshTableBill();
+			}
+		});
+
+		popupMenuTable.add(mntmRemove);
+		addPopup(table, popupMenuTable);
 	}
 
 
@@ -87,5 +90,28 @@ public class CustomerOrderList extends JPanel {
 		tableScroll.setVisible(true);
 		add(tableScroll);
 	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
 
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+			}
+		});
+	}
 }
