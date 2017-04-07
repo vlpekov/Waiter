@@ -92,10 +92,7 @@ public class OrderTable extends JPanel {
 	}
 	
 	private void setSumTable(double sum) {
-		System.out.println(OrderDialog.getTableObject().getTabelInfo());
 		OrderDialog.getTableObject().setBill(sum);
-		System.out.println(OrderDialog.getTableObject().getBill());
-		
 	}
 
 	private void setSumCustomer(double sum) {

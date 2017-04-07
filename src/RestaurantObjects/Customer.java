@@ -33,12 +33,12 @@ public class Customer {
 	}
 
 	public void activateCustomer() {
-		System.out.println("Customer " + this.customerNumber + " is activ");
+		System.out.println("Клиент " + this.customerNumber + " е активен.");
 		setActive(true);
 	}
 
 	public void deactivateCustomer() {
-		System.out.println("Customer " + this.customerNumber + " is NOT activ");
+		System.out.println("Клиент " + this.customerNumber + " не е акривен.");
 		setActive(false);
 		setCustomerBill(0);
 	}
@@ -78,7 +78,7 @@ public class Customer {
 	}
 
 	public void customerInfo() {
-		System.out.printf("Текущ клиент: %d, Маса: %d Актириван: %b Сметка: %b\n", getCustomerNumber(),
+		System.out.printf("Текущ клиент: %d, Маса: %d Актириван: %b Сметка: %.2f\n", getCustomerNumber(),
 				getTableNumber(), isActive(), getBill());
 	}
 

@@ -175,7 +175,7 @@ public class OrderDialog {
 				frame.dispose();
 				System.out.println("Поръчването от клиент " + customerObject.getCustomerNumber()
 						+ " приключи с текуща сметка от: " + customerObject.getCustomerBill());
-				System.out.printf("Обща сметка за масат &d: %d", tableObject.getTableNumber(), tableObject.getBill());
+				System.out.printf("Обща сметка за масат %d: %.2f\n", tableObject.getTableNumber(), tableObject.getBill());
 			}
 		});
 
@@ -223,6 +223,7 @@ public class OrderDialog {
 		orderButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				menuList.sumItemPrices();
+				menuList.deleteRow(1);
 				// frame.dispose();
 			}
 
@@ -282,7 +283,6 @@ public class OrderDialog {
 		for (MenuItem item : Menu.menuList) {
 			if (item.getCategory().equals(category)) {
 				itemComboBox.addItem(item.getName());
-				System.out.println(item.getName());
 			}
 		}
 	}

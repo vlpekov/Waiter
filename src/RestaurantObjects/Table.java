@@ -5,6 +5,8 @@ import java.util.Arrays;
 
 import javax.swing.JLabel;
 
+import GUI.Interface;
+
 public class Table {
 	private int tableNumber;
 	private int placesNumber;
@@ -114,6 +116,7 @@ public class Table {
 	public void occupyTable() {
 		this.setAvailable(false);
 		this.setReserved(false);
+		Interface.setPopupMenuPayBill(true);
 	}
 
 	public void release(int tableNumber) {
@@ -265,5 +268,12 @@ public class Table {
 
 	public void billInfo() {
 		System.out.println("Сметка: " + getBill());
+	}
+	
+	public void clearBill() {
+		setBill(0);
+		for (Customer customer : customers) {
+			customer.setCustomerBill(0);
+		}
 	}
 }

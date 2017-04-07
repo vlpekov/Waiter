@@ -44,6 +44,7 @@ public class Interface {
 	private String leftChair = "w";
 	private String rightChair = "e";
 	private int maxCustomerImageNumber = 10;
+	private static JMenuItem popupMenuPayBill;
 
 	/**
 	 * Launch the application.
@@ -62,16 +63,12 @@ public class Interface {
 		new Table();
 	}
 
-	private static void printHorizontalLine() {
-		System.out.println("-----------------------");
-	}
-
 	public static Table getCurrentTable() {
 		return currentTable;
 	}
 
 	private void setCurrentTable(int tableNumber) {
-		this.currentTable = Restaurant.getTable(tableNumber);
+		currentTable = Restaurant.getTable(tableNumber);
 	}
 
 	public static JLabel getCurrentCustomer() {
@@ -97,8 +94,8 @@ public class Interface {
 		frame.setJMenuBar(menuBar);
 
 		OrderDialog frameMenu = new OrderDialog();
-//		frameMenu.setBounds(300, 300, 650, 300);
-//		frameMenu.setVisible(false);
+		// frameMenu.setBounds(300, 300, 650, 300);
+		// frameMenu.setVisible(false);
 
 		// customers lists
 		Map<Integer, JLabel> customersTable1 = new HashMap<Integer, JLabel>(15);
@@ -121,16 +118,16 @@ public class Interface {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
 				JDialog.setDefaultLookAndFeelDecorated(false);
-				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?", "Потвърдете",
-			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			    if (response == JOptionPane.NO_OPTION) {
-			    
-			    } else if (response == JOptionPane.YES_OPTION) {
-			    	showEditMenuTable();
-			    } else if (response == JOptionPane.CLOSED_OPTION) {
-			     
-			    }
-				showEditMenuTable();
+				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?",
+						"Потвърдете", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+
+				} else if (response == JOptionPane.YES_OPTION) {
+					showEditMenuTable();
+				} else if (response == JOptionPane.CLOSED_OPTION) {
+
+				}
+				// showEditMenuTable();
 			}
 		});
 		mnEdit.add(mntmEditMenu);
@@ -140,18 +137,18 @@ public class Interface {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				JDialog.setDefaultLookAndFeelDecorated(false);
-				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?", "Потвърдете",
-			        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-			    if (response == JOptionPane.NO_OPTION) {
-			    
-			    } else if (response == JOptionPane.YES_OPTION) {
+				int response = JOptionPane.showConfirmDialog(null, "Желаете ли да възстановите менюто от файл?",
+						"Потвърдете", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if (response == JOptionPane.NO_OPTION) {
+
+				} else if (response == JOptionPane.YES_OPTION) {
 					try {
 						Menu.restoreMenuFromBackup();
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
-			    } else if (response == JOptionPane.CLOSED_OPTION) {			     
-			    }
+				} else if (response == JOptionPane.CLOSED_OPTION) {
+				}
 			}
 		});
 		mnEdit.add(mntmEditTables);
@@ -539,12 +536,33 @@ public class Interface {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				
+				if (currentTable.getBill() > 0) {
+					JDialog.setDefaultLookAndFeelDecorated(false);
+					int response = JOptionPane.showConfirmDialog(null,
+							"Сметката не е приключена. Желаете ли да продължите?", "Внимание!",
+							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if (response == JOptionPane.NO_OPTION) {
+
+					} else if (response == JOptionPane.YES_OPTION) {
+						removeCustomers(currentTable, allTablesCustomers);
+						currentTable.release();
+						currentReservedSign.setVisible(false);
+						getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
+						currentTable.clearBill();
+						System.out.println("Масата е освободена");
+						System.out.println("Smetkata e " + currentTable.getBill());
+						setPopupMenuPayBill(false);
+					} else if (response == JOptionPane.CLOSED_OPTION) {
+
+					}
+				}
 				removeCustomers(currentTable, allTablesCustomers);
 				currentTable.release();
 				currentReservedSign.setVisible(false);
 				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
-
-				System.out.println("Clear table");
+				System.out.println("Масата е освободена");
+				setPopupMenuPayBill(false);
 			}
 		});
 
@@ -556,23 +574,42 @@ public class Interface {
 				currentTable.bookTable();
 				currentReservedSign.setVisible(true);
 				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
-				System.out.println("Reserved table");
+				System.out.println("Масата е резервирана");
 			}
 		});
 
-		
 		JMenuItem getBill = new JMenuItem("Приключване на сметката");
-		popupMenuTable.add(getBill);
-		getBill.addMouseListener(new MouseAdapter() {
+		getBill.setVisible(false);
+		popupMenuPayBill = getBill;
+		
+		
+		popupMenuPayBill.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				JDialog.setDefaultLookAndFeelDecorated(false);
+				if (currentTable.getBill() > 0) {
+					int response = JOptionPane.showConfirmDialog(null, "Желаете ли да приключите сметката?",
+							"Потвърдете", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					if (response == JOptionPane.NO_OPTION) {
+
+					} else if (response == JOptionPane.YES_OPTION) {
+						currentTable.getTableBill();
+						removeCustomers(currentTable, allTablesCustomers);
+						currentTable.release();
+						currentTable.clearBill();
+						getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
+					} else if (response == JOptionPane.CLOSED_OPTION) {
+
+					}
+				}
 				currentTable.getTableBill();
 				removeCustomers(currentTable, allTablesCustomers);
 				currentTable.release();
-				currentReservedSign.setVisible(false);
+				currentTable.clearBill();
 				getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
 			}
 		});
+		popupMenuTable.add(popupMenuPayBill);
 		
 		// set tables
 		// table 1
@@ -985,10 +1022,6 @@ public class Interface {
 		chair3T9.setIcon(new ImageIcon(Interface.class.getResource("/images/chairw.png")));
 		frame.getContentPane().add(chair3T9);
 
-//		Label menuText = new Label("MENU");
-//		menuText.setBounds(100, 200, 114, 57);
-//		frameMenu.getContentPane().add(menuText);
-
 	}
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
@@ -1151,7 +1184,6 @@ public class Interface {
 
 	private void doubleMouseClickOnCustomer(MouseEvent e) {
 		if (e.getClickCount() >= 2) {
-			System.out.println("Open order dialog");
 			runOrderDialog();
 			OrderDialog.setCurrentCustomer(getCustomerObject(currentCustomer));
 			OrderDialog.getCustomerObject().getCustomerNumber();
@@ -1205,7 +1237,6 @@ public class Interface {
 	private void selectTable(MouseEvent e, int tableNumber) {
 		setCurrentTable(tableNumber);
 		currentReservedSign = getReservedSign(getCurrentTable());
-		System.out.println("Current table " + tableNumber);
 	}
 
 	private void tableMouseEvent(JLabel table, int tableNumber) {
@@ -1233,7 +1264,7 @@ public class Interface {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				currentCustomer = customer;
-				
+
 			}
 		});
 		customersTable.put(customerNumber, customer);
@@ -1285,7 +1316,6 @@ public class Interface {
 		int numberStartPosition = customerInfo.indexOf("images/client") + 14;
 		int numberEndPosition = customerInfo.indexOf(".png");
 		String imageNumber = customerInfo.substring(numberStartPosition, numberEndPosition);
-		System.out.println("image number " + imageNumber);
 		return Integer.parseInt(imageNumber);
 	}
 
@@ -1295,7 +1325,6 @@ public class Interface {
 		do {
 			newImageNumber = randomNumber(1, maxCustomerImageNumber);
 		} while (currentImageNumber == randomNumber(1, 10));
-		System.out.println("newImageNumber " + newImageNumber);
 		return newImageNumber;
 	}
 
@@ -1308,6 +1337,7 @@ public class Interface {
 		MenuListTableEditable editableMenuTable = new MenuListTableEditable();
 		editableMenuTable.runTable();
 	}
+
 	private void runOrderDialog() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -1321,16 +1351,18 @@ public class Interface {
 			}
 		});
 	}
-	private Customer getCustomerObject (JLabel currentCustomer) {
+
+	private Customer getCustomerObject(JLabel currentCustomer) {
 		Customer getCustomer;
 		for (Table table : Restaurant.tableList) {
-			if (table.getCustomer(currentCustomer)!=null) {
-				System.out.println("Намерен е клиента!");
+			if (table.getCustomer(currentCustomer) != null) {
 				return table.getCustomer(currentCustomer);
 			}
-
 		}
 		return null;
 	}
 
+	public static void setPopupMenuPayBill(boolean visible) {
+		popupMenuPayBill.setVisible(visible);
+	}
 }
