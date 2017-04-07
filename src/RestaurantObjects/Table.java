@@ -126,9 +126,15 @@ public class Table {
 	}
 
 	public void release() {
+		isBillPaid();
 		this.setAvailable(true);
 		this.setReserved(false);
 
+	}
+
+	private void isBillPaid() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void bookTable(int tableNumber) {
@@ -146,7 +152,7 @@ public class Table {
 	}
 
 	public void printTableinfo() {
-		System.out.printf("Table number: %d, Number of chairs: %d, Available: %b\n", this.getTableNumber(),
+		System.out.printf("Маса номер: %d, Брой столове: %d, Статус: %b\n", this.getTableNumber(),
 				this.getPlacesNumber(), this.isAvailable());
 	}
 
@@ -237,11 +243,11 @@ public class Table {
 	public String getTabelInfo() {
 		String tableInfo = "";
 		if (isReserved) {
-			tableInfo = "Reserved";
+			tableInfo = "Резервирана";
 		} else if (!isAvailable) {
-			tableInfo = "Оccupied.";
+			tableInfo = "Заета";
 		} else {
-			tableInfo = "Аvailable";
+			tableInfo = "Свободна";
 		}
 		return tableInfo;
 	}
@@ -252,10 +258,12 @@ public class Table {
 			bill += customer.getCustomerBill();
 			System.out.println("Сметката на клиент" + customer.getCustomerNumber() + " е " + customer.getCustomerBill());
 		}
-//		String str = String.format("%1.2f", bill);
-//		System.out.println("Сметката на маса " + tableNumber + " е: " + bill);
-//		bill = Double.valueOf(str);
 		System.out.println("Сметката на маса " + tableNumber + " е: " + bill);
+		System.out.println("Сметката на маса " + tableNumber + " е: " + getBill());
 		return bill;
+	}
+
+	public void billInfo() {
+		System.out.println("Сметка: " + getBill());
 	}
 }

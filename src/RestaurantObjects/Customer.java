@@ -40,6 +40,7 @@ public class Customer {
 	public void deactivateCustomer() {
 		System.out.println("Customer " + this.customerNumber + " is NOT activ");
 		setActive(false);
+		setCustomerBill(0);
 	}
 
 	public double getCustomerBill() {
@@ -77,7 +78,11 @@ public class Customer {
 	}
 
 	public void customerInfo() {
-		System.out.printf("Customer number: %d, Table: %d Available: %b \n", getCustomerNumber(),
-				getTableNumber(), isActive());
+		System.out.printf("Текущ клиент: %d, Маса: %d Актириван: %b Сметка: %b\n", getCustomerNumber(),
+				getTableNumber(), isActive(), getBill());
+	}
+
+	private double getBill() {
+		return customerBill;
 	}
 }

@@ -84,14 +84,17 @@ public class OrderTable extends JPanel {
 		        double itemPrice = (double) table.getValueAt(i, 1);
 		        sum += itemPrice;
 		    }
-		    System.out.println(sum);
+		    System.out.println("Направена е поръчка на стойност: " + sum);
 		    setSumCustomer(sum);
 		    setSumTable(sum);
+		    
 		    return sum;
 	}
 	
 	private void setSumTable(double sum) {
-		// TODO Auto-generated method stub
+		System.out.println(OrderDialog.getTableObject().getTabelInfo());
+		OrderDialog.getTableObject().setBill(sum);
+		System.out.println(OrderDialog.getTableObject().getBill());
 		
 	}
 

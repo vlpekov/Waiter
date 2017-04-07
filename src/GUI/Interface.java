@@ -150,10 +150,8 @@ public class Interface {
 					} catch (FileNotFoundException e1) {
 						e1.printStackTrace();
 					}
-			    } else if (response == JOptionPane.CLOSED_OPTION) {
-			     
+			    } else if (response == JOptionPane.CLOSED_OPTION) {			     
 			    }
-
 			}
 		});
 		mnEdit.add(mntmEditTables);
@@ -1156,6 +1154,8 @@ public class Interface {
 			System.out.println("Open order dialog");
 			runOrderDialog();
 			OrderDialog.setCurrentCustomer(getCustomerObject(currentCustomer));
+			OrderDialog.getCustomerObject().getCustomerNumber();
+			OrderDialog.setCurrentTable();
 		}
 	}
 
@@ -1325,6 +1325,7 @@ public class Interface {
 		Customer getCustomer;
 		for (Table table : Restaurant.tableList) {
 			if (table.getCustomer(currentCustomer)!=null) {
+				System.out.println("Намерен е клиента!");
 				return table.getCustomer(currentCustomer);
 			}
 

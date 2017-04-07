@@ -36,6 +36,7 @@ import javax.swing.table.DefaultTableModel;
 import RestaurantObjects.Customer;
 import RestaurantObjects.Menu;
 import RestaurantObjects.MenuItem;
+import RestaurantObjects.Restaurant;
 import RestaurantObjects.Table;
 
 import javax.swing.JSeparator;
@@ -84,7 +85,19 @@ public class OrderDialog {
 	}
 
 	public static void setCurrentTable(Customer currentCustomere) {
+		System.out.println("Поръчка на клиент номер: " + currentCustomere.getCustomerNumber() + ", седяща на маса "
+				+ currentCustomere.getTableNumber());
+		currentCustomere.setCustomerTable(Restaurant.getTable(currentCustomere.getTableNumber()));
 		tableObject = currentCustomere.getCustomerTable();
+	}
+
+	public static void setCurrentTable() {
+		int tableNumber = customerObject.getTableNumber();
+		Restaurant.getTable(tableNumber);
+	}
+
+	public static Table getTableObject() {
+		return tableObject;
 	}
 
 	public static Customer getCustomerObject() {
@@ -155,11 +168,14 @@ public class OrderDialog {
 
 		panel.setLayout(null);
 
-		JButton cancelButton = new JButton("Отмени");
+		JButton cancelButton = new JButton("Затвори");
 		cancelButton.setBounds(350, 235, 105, 23);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
+				System.out.println("Поръчването от клиент " + customerObject.getCustomerNumber()
+						+ " приключи с текуща сметка от: " + customerObject.getCustomerBill());
+				System.out.printf("Обща сметка за масат &d: %d", tableObject.getTableNumber(), tableObject.getBill());
 			}
 		});
 
@@ -254,9 +270,7 @@ public class OrderDialog {
 		for (MenuItem item : Menu.menuList) {
 			if (item.getCategory().equals(category)) {
 				items.add(item.getName());
-				System.out.println(item.getName());
 			}
-
 		}
 		return items;
 
@@ -265,8 +279,6 @@ public class OrderDialog {
 	private void addItemsComboBox(JComboBox<String> categoryComboBox, JComboBox<String> itemComboBox) {
 		itemComboBox.removeAll();
 		String category = categoryComboBox.getSelectedItem().toString();
-		System.out.println(category);
-
 		for (MenuItem item : Menu.menuList) {
 			if (item.getCategory().equals(category)) {
 				itemComboBox.addItem(item.getName());
