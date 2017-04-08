@@ -162,7 +162,6 @@ public class OrderDialog {
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String itemName = (String) itemComboBox.getSelectedItem();
-				System.out.println(itemName);
 				addItemToOrderList(itemName);
 			}
 
@@ -250,7 +249,7 @@ public class OrderDialog {
 
 		});
 		panelBottom.add(orderButton);
-		
+
 		JButton orderListButton = new JButton("Списък поръчки");
 		orderListButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -341,7 +340,7 @@ public class OrderDialog {
 	private void setLebelsText() {
 		orderObjectInfo.setText(
 				"Поръчка на клиент " + customerObject.getCustomerNumber() + " от маса " + tableObject.getTableNumber());
-		currentBillLabel.setText(
-				"Текущи сметки - клиент: " + String.format("%1$,.2f", customerObject.getCustomerBill()) + " лв., маса: " + String.format("%1$,.2f", tableObject.getBill()) + " лв." );
+		currentBillLabel.setText("Текущи сметки - клиент: " + String.format("%1$,.2f", customerObject.getCustomerBill())
+				+ " лв., маса: " + String.format("%1$,.2f", tableObject.getBill()) + " лв.");
 	}
 }

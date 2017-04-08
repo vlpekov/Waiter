@@ -1,4 +1,5 @@
 package RestaurantObjects;
+
 import java.util.ArrayList;
 
 import javax.swing.JLabel;

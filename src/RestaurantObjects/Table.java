@@ -14,7 +14,6 @@ public class Table {
 	private boolean isReserved;
 	private double bill;
 
-	// public static ArrayList<Table> tableList = new ArrayList<Table>();
 	private ArrayList<Chair> chairs = new ArrayList<Chair>();
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
 
@@ -164,8 +163,6 @@ public class Table {
 		System.out.println("Chairs:");
 		for (Chair chair : this.chairs) {
 			chair.chairInfo();
-			// System.out.printf("Chair number: %d, Available: %b\n",
-			// chair.getChairNumber(), chair.isFree());
 		}
 	}
 
@@ -173,8 +170,6 @@ public class Table {
 		System.out.println("Customers:");
 		for (Customer customer : customers) {
 			customer.customerInfo();
-			// System.out.printf("Chair number: %d, Available: %b\n",
-			// chair.getChairNumber(), chair.isFree());
 		}
 	}
 
@@ -262,18 +257,19 @@ public class Table {
 		return bill;
 	}
 
-	public void refreshTableBill () {
+	public void refreshTableBill() {
 		bill = getTableBill();
 	}
-	
+
 	public void billInfo() {
 		System.out.println("Сметка: " + getBill());
 	}
 
 	public void clearBill() {
-		resetBill();;
+		resetBill();
+		;
 		for (Customer customer : customers) {
 			customer.resetBill();
-			}
+		}
 	}
 }

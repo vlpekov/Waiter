@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class CustomerOrderList extends JPanel {
-	
+
 	public CustomerOrderList(Customer currentCustomer) {
 
 		String[] header = { "Име", "Цена", "Количество", "Категория" };
@@ -32,19 +32,17 @@ public class CustomerOrderList extends JPanel {
 		// printTable(table);
 		// printArrayList(menuFromJTable);
 
-		
 		for (int i = 0; i < currentCustomer.orderList.size(); i++) {
 			String name = currentCustomer.orderList.get(i).getName();
 			double price = currentCustomer.orderList.get(i).getPrice();
 			String quantity = currentCustomer.orderList.get(i).getQuantity();
 			String category = currentCustomer.orderList.get(i).getCategory();
-			System.out.println("" + name + price + quantity + category);
 			Object[] data = { name, price, quantity, category };
 
 			tableModel.addRow(data);
 
 		}
-	
+
 		JPopupMenu popupMenuTable = new JPopupMenu();
 		JMenuItem mntmRemove = new JMenuItem("Премахни");
 
@@ -64,7 +62,6 @@ public class CustomerOrderList extends JPanel {
 		addPopup(table, popupMenuTable);
 	}
 
-
 	public void runMenuTable(Customer currentCustomer) {
 		JFrame tableFrame = new JFrame();
 		tableFrame.setBounds(200, 200, 800, 400);
@@ -73,7 +70,6 @@ public class CustomerOrderList extends JPanel {
 		tableFrame.setVisible(true);
 		tableFrame.add(orderList);
 	}
-
 
 	public void setTableProperties(JTable table) {
 		table.getColumn("Име").setMinWidth(400);
@@ -90,6 +86,7 @@ public class CustomerOrderList extends JPanel {
 		tableScroll.setVisible(true);
 		add(tableScroll);
 	}
+
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

@@ -19,7 +19,6 @@ public class Menu {
 		try {
 			loadMenuFromFile();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		setCategoryList();
@@ -37,7 +36,7 @@ public class Menu {
 		categoryList.add("други");
 	}
 
-	public static MenuItem getMenuItem (String itemName) {
+	public static MenuItem getMenuItem(String itemName) {
 		for (MenuItem item : menuList) {
 			if (item.getName().equals(itemName)) {
 				return item;
@@ -45,7 +44,7 @@ public class Menu {
 		}
 		return null;
 	}
-	
+
 	public static ArrayList<MenuItem> getMenuList() {
 		return menuList;
 	}
@@ -74,7 +73,6 @@ public class Menu {
 			menuList = (ArrayList<MenuItem>) ois.readObject();
 			fin.close();
 		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

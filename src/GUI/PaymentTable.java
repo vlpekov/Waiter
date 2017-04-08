@@ -25,8 +25,6 @@ public class PaymentTable extends JPanel {
 		fillTable(tableObject, tableModel);
 	}
 
-
-
 	private void fillTable(Table tableObject, DefaultTableModel tableModel) {
 		double totalBill = 0;
 		for (int i = 1; i <= tableObject.getPlacesNumber(); i++) {
@@ -48,10 +46,8 @@ public class PaymentTable extends JPanel {
 		totalBill = Double.parseDouble(billString);
 		Object[] data = { "Всичко", totalBill };
 		tableModel.addRow(data);
-		
+
 	}
-
-
 
 	public void runMenuTable(int tableNumber) {
 		JFrame tableFrame = new JFrame();

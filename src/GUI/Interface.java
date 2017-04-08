@@ -254,17 +254,15 @@ public class Interface {
 
 		// Customer pop-up menu
 		JPopupMenu popupMenuCustomer = new JPopupMenu();
-		JMenuItem mntmRemove = new JMenuItem("Remove");
+		JMenuItem mntmRemove = new JMenuItem("Премахни");
 		popupMenuCustomer.add(mntmRemove);
 		mntmRemove.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// currentCustomer.setVisible(false);
-				// getTableInfoLabel(currentTable).setText(currentTable.getTabelInfo());
 				removeCurrentCustomer(currentCustomer, currentTable, allTablesCustomers);
 			}
 		});
-		JMenuItem mntmChangeIcon = new JMenuItem("Change Icon");
+		JMenuItem mntmChangeIcon = new JMenuItem("Снени изображението");
 		popupMenuCustomer.add(mntmChangeIcon);
 		mntmChangeIcon.addMouseListener(new MouseAdapter() {
 			@Override
@@ -1603,7 +1601,7 @@ public class Interface {
 	}
 
 	private Customer getCustomerObject(JLabel currentCustomer) {
-		Customer getCustomer;
+
 		for (Table table : Restaurant.tableList) {
 			if (table.getCustomer(currentCustomer) != null) {
 				return table.getCustomer(currentCustomer);

@@ -1,4 +1,5 @@
 package RestaurantObjects;
+
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -64,12 +65,12 @@ public class Customer {
 		}
 		this.customerBill = sum;
 	}
-	
+
 	public void resetBill() {
 		this.customerBill = 0;
 		orderList.clear();
 	}
-	
+
 	public JLabel getCustomerLabel() {
 		return customerLabel;
 	}
@@ -102,8 +103,8 @@ public class Customer {
 	private double getBill() {
 		return customerBill;
 	}
-	
-	public void addToOrderList (MenuItem item) {
+
+	public void addToOrderList(MenuItem item) {
 		orderList.add(item);
 	}
 }

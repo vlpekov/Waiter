@@ -1,4 +1,5 @@
 package RestaurantObjects;
+
 import javax.swing.JLabel;
 
 public class Chair {
@@ -6,8 +7,6 @@ public class Chair {
 	private boolean isFree;
 	private int tableNumber;
 	private JLabel chairLabel;
-
-	// private Customer customer;
 
 	public Chair() {
 		this.isFree = true;
@@ -34,11 +33,11 @@ public class Chair {
 	public Table getTable() {
 		return Restaurant.getTable(tableNumber);
 	}
-	
+
 	public int getTableNumber() {
 		return tableNumber;
 	}
-		
+
 	public JLabel getChairLabel() {
 		return chairLabel;
 	}
@@ -47,7 +46,7 @@ public class Chair {
 		this.chairLabel = chairLabel;
 	}
 
-	public void chairInfo () {
+	public void chairInfo() {
 		System.out.printf("Chair number: %d, Table: %d Available: %b\n", getChairNumber(), getTableNumber(), isFree());
 	}
 }

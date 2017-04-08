@@ -306,7 +306,6 @@ public class MenuListTableEditable extends JPanel {
 	}
 
 	private void isTableEdited(boolean isEdited, JTable table) {
-		System.out.println("Table is edited" + isEdited);
 		if (isEdited) {
 			this.isEdited = true;
 			saveJTableToArrayList(table);
@@ -330,7 +329,6 @@ public class MenuListTableEditable extends JPanel {
 		String quantity;
 		String category;
 		double price;
-		System.out.println("Сортираната таблица има редове " + table.getRowCount());
 		menuFromJTable.clear();
 		for (int row = 0; row < table.getRowCount(); row++) {
 			if (table.getValueAt(row, firstColumn) == null || table.getValueAt(row, secondColumn) == null
@@ -356,9 +354,9 @@ public class MenuListTableEditable extends JPanel {
 			menuFromJTable.add(new RestaurantObjects.MenuItem(name, price, quantity, category));
 		}
 		Collections.sort(menuFromJTable, new Comparator<MenuItem>() {
-		    public int compare(MenuItem item1, MenuItem item2) {
-		        return item1.getCategory().compareTo(item2.getCategory());
-		    }
+			public int compare(MenuItem item1, MenuItem item2) {
+				return item1.getCategory().compareTo(item2.getCategory());
+			}
 		});
 	}
 
@@ -417,5 +415,3 @@ public class MenuListTableEditable extends JPanel {
 	}
 
 }
-
-
